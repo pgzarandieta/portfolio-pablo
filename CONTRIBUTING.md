@@ -45,6 +45,17 @@ Keep this guide updated when the stack or directory structure changes.
 - Bug titles must follow: `[BUG] E<n>: <short name>`.
 - If a change affects UI, include LAN and Tailscale preview URLs in the PR.
 
+## CI checks
+
+- CI runs on every PR update and on merges to `main`.
+- Current checks: `npm run lint` and `npm run typecheck`.
+- Workflow file: `.forgejo/workflows/ci.yml`.
+
+Quick definitions:
+
+- **Lint**: code quality checks that catch common mistakes and style issues.
+- **Typecheck**: TypeScript checks that catch type errors before runtime.
+
 ## Labels (required)
 
 Apply labels from each category:

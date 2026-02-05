@@ -50,6 +50,22 @@ This is a short, beginner-friendly reference for how the portfolio stack fits to
 - Hooks install automatically on `npm install`.
 - If you need to skip hooks temporarily: `HUSKY=0 git commit ...`.
 
+## CI checks (Forgejo)
+
+- CI runs on every PR update and on merges to `main`.
+- Current checks: **lint** and **typecheck**.
+- Workflow file: `.forgejo/workflows/ci.yml`.
+
+If CI fails, you can run the same checks locally:
+
+- `npm run lint`
+- `npm run typecheck`
+
+**What do these checks mean?**
+
+- **Lint**: a code quality check. It finds common mistakes, bad patterns, and style issues.
+- **Typecheck**: a TypeScript check. It verifies types and catches type errors before runtime.
+
 ## Package manager policy
 
 - This repo uses **npm only**.

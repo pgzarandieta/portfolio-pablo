@@ -1,0 +1,28 @@
+[
+  {
+    "id": "airbus-consultant",
+    "company": "Airbus (embedded consultant)",
+    "role": "Configuration Management / Change Process",
+    "location": "Getafe, Madrid",
+    "start": "2023-08",
+    "end": "2025-09",
+    "highlights": [
+      "Supported CM change process documentation and traceability",
+      "Defined customer-side requirements for a 3DEXPERIENCE-based platform",
+      "Executed UAT, training, and hypercare for rollout"
+    ]
+  },
+  {
+    "id": "airbus-data-intern",
+    "company": "Airbus Commercial",
+    "role": "Data Intern",
+    "location": "Madrid",
+    "start": "2023-02",
+    "end": "2023-08",
+    "highlights": [
+      "Built product structure dashboard for engineering queries",
+      "Implemented ETL pipelines in Skywise",
+      "Delivered a lightweight web app for data exploration"
+    ]
+  }
+]

@@ -1,0 +1,10 @@
+[
+  {
+    "id": "upm-aero",
+    "institution": "UPM",
+    "program": "Aerospace Engineering",
+    "focus": "Propulsion",
+    "end": "2026-10",
+    "highlights": ["Thermodynamics", "Heat and mass transfer", "Materials"]
+  }
+]

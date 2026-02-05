@@ -1,0 +1,26 @@
+[
+  {
+    "id": "one-platform",
+    "title": "One Platform MVP1 rollout",
+    "summary": "Customer-side requirements, UAT, and training for CM tooling.",
+    "tags": ["CM", "UAT", "3DEXPERIENCE"],
+    "highlights": ["MVP1 deployed", "Trained ~150 users"],
+    "caseStudySlug": "one-platform"
+  },
+  {
+    "id": "homelab-platform",
+    "title": "Self-hosted platform",
+    "summary": "SSO + Forgejo + CI automation on a home server.",
+    "tags": ["DevOps", "Containers", "SSO"],
+    "highlights": ["Podman stacks", "Agent workflows"],
+    "caseStudySlug": "homelab-platform"
+  },
+  {
+    "id": "airbus-data",
+    "title": "Airbus data internship",
+    "summary": "BOM/product structure analytics with ETL pipelines.",
+    "tags": ["ETL", "Dashboards", "Skywise"],
+    "highlights": ["Product structure dashboard", "ETL pipeline"],
+    "caseStudySlug": "airbus-data"
+  }
+]

@@ -32,6 +32,7 @@ content/
 - Content is **statically imported** at build time (no runtime database).
 - The app will read JSON files directly from `content/`.
 - Case studies (if used) will be loaded from `content/case-studies/`.
+- Type definitions live in `content/schema.ts`.
 
 This keeps deployments fast, reproducible, and easy to edit.
 

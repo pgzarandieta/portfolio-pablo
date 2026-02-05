@@ -1,0 +1,14 @@
+[
+  {
+    "category": "Data",
+    "items": ["Python", "SQL", "pandas", "ETL", "R", "MATLAB"]
+  },
+  {
+    "category": "Engineering",
+    "items": ["3DEXPERIENCE", "CAD", "FEA", "Manufacturing"]
+  },
+  {
+    "category": "Platform",
+    "items": ["Linux", "Git", "Podman", "CI/CD", "Nginx"]
+  }
+]

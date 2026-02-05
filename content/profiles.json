@@ -1,0 +1,32 @@
+[
+  {
+    "id": "systems",
+    "title": "Systems Engineering (Aerospace / Drones)",
+    "summary": "Systems engineering with configuration management and change control experience in high-rigor aerospace programs.",
+    "focus": ["requirements", "traceability", "V&V", "change control"]
+  },
+  {
+    "id": "devops",
+    "title": "DevOps / Platform",
+    "summary": "Self-hosted platform, CI automation, and agent-assisted workflows.",
+    "focus": ["containers", "CI/CD", "automation", "platform ops"]
+  },
+  {
+    "id": "mechanical",
+    "title": "Mechanical Engineering",
+    "summary": "CAD, configuration coordination, and hands-on manufacturing experience.",
+    "focus": ["CAD", "FEA", "manufacturing", "configuration"]
+  },
+  {
+    "id": "data",
+    "title": "Data Analyst",
+    "summary": "ETL pipelines and dashboards for engineering data analysis.",
+    "focus": ["ETL", "SQL", "dashboards", "data quality"]
+  },
+  {
+    "id": "cm",
+    "title": "Configuration Management",
+    "summary": "Change process support and CM tooling adoption.",
+    "focus": ["CM", "PLM", "change process", "training"]
+  }
+]

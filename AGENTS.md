@@ -25,6 +25,7 @@ These instructions apply to all changes in this repository.
 - Epics must keep the title format `[EPIC <n>] <short name>` and list all child issues.
 - Feature/issue titles must follow: `[FEAT|DOCS|CHORE] E<n>: <short name>`.
 - Bug titles must follow: `[BUG] E<n>: <short name>`.
+- If a change affects UI, include LAN and Tailscale preview URLs in the PR.
 
 ## Branch naming
 

@@ -17,6 +17,11 @@
 - [ ] Manual checks (describe below)
 - [ ] Automated tests added
 
+## Preview URLs (required for UI changes)
+
+- LAN: 
+- Tailscale: 
+
 ## Checklist
 
 - [ ] Branch name includes Epic/Issue/Feature ID

@@ -44,6 +44,15 @@ npm install
 
 # dev server
 npm run dev
+
+# lint
+npm run lint
+
+# format
+npm run format
+
+# format check
+npm run format:check
 ```
 
 ### Lockfile policy

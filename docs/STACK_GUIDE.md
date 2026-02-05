@@ -41,6 +41,7 @@ This is a short, beginner-friendly reference for how the portfolio stack fits to
 - `npm run dev`: run the local dev server.
 - `npm run lint`: run lint checks.
 - `npm run format`: format files.
+- `npm run format:check`: verify formatting without changing files.
 
 ## Package manager policy
 

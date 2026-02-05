@@ -44,6 +44,12 @@ This is a short, beginner-friendly reference for how the portfolio stack fits to
 - `npm run format:check`: verify formatting without changing files.
 - `npm run typecheck`: run TypeScript type checks.
 
+## Pre-commit hooks
+
+- We use **husky** + **lint-staged** to lint/format staged files on commit.
+- Hooks install automatically on `npm install`.
+- If you need to skip hooks temporarily: `HUSKY=0 git commit ...`.
+
 ## Package manager policy
 
 - This repo uses **npm only**.

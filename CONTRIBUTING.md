@@ -30,25 +30,34 @@ Keep this guide updated when the stack or directory structure changes.
 - Commit `package-lock.json` with any dependency changes.
 - Do not use `pnpm` or `yarn` in this repo.
 
+## Pre-commit hooks
+
+- We use **husky** + **lint-staged** for pre-commit checks.
+- Hooks are installed automatically on `npm install`.
+- Staged files are auto-formatted and linted before commit.
+- To skip hooks temporarily: run `HUSKY=0 git commit ...`.
+
 ## Issue/PR templates
 
 - Use the templates in `.gitea/ISSUE_TEMPLATE/` and `.gitea/pull_request_template.md`.
 - Epics must keep the title format `[EPIC <n>] <short name>` and include a checklist of child issues.
 - Feature/issue titles must follow: `[FEAT|DOCS|CHORE] E<n>: <short name>`.
 - Bug titles must follow: `[BUG] E<n>: <short name>`.
- - If a change affects UI, include LAN and Tailscale preview URLs in the PR.
+- If a change affects UI, include LAN and Tailscale preview URLs in the PR.
 
 ## Labels (required)
 
 Apply labels from each category:
 
 **Priority**
+
 - `priority:p0` — blocker / urgent
 - `priority:p1` — high
 - `priority:p2` — normal
 - `priority:p3` — low
 
 **Area**
+
 - `area:app` — Next.js app/router/pages
 - `area:ui` — UI components & styling
 - `area:content` — CV/portfolio content & data
@@ -59,6 +68,7 @@ Apply labels from each category:
 - `area:repo` — repo tooling/config
 
 **Type**
+
 - `type:epic`
 - `type:feature`
 - `type:issue`
@@ -67,6 +77,7 @@ Apply labels from each category:
 - `type:docs`
 
 Good practice:
+
 - Use exactly one `priority:*`, one `area:*`, and one `type:*` label.
 - If something is both feature and refactor, prefer the primary outcome label.
 

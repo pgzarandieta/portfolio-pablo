@@ -35,7 +35,7 @@ GitHub is a **push mirror** used for Vercel deployments and public visibility.
 
 ### Requirements
 - Node.js **LTS** (recommended)
-- One of: `npm` / `pnpm` / `yarn`
+- **Package manager:** `npm` (required)
 
 ### Run locally
 ```bash
@@ -45,3 +45,7 @@ npm install
 # dev server
 npm run dev
 ```
+
+### Lockfile policy
+- `package-lock.json` is required and must be committed.
+- Do not use `pnpm` or `yarn` in this repo.

@@ -1,13 +1,25 @@
 ## Summary
 
 ## Related
-- Epic/Issue/Feature:
+
+- Closes #
+- Epic: #
 
 ## Changes
+
 - 
 
-## Checks
+## Screenshots / video (if UI)
+
+## Testing
+
+- [ ] Not needed
+- [ ] Manual checks (describe below)
+- [ ] Automated tests added
+
+## Checklist
+
 - [ ] Branch name includes Epic/Issue/Feature ID
-- [ ] Changes align with `AGENTS.md`
-- [ ] Tests added or not needed
+- [ ] Labels applied (`priority:*`, `area:*`, `type:*`)
 - [ ] Docs updated (if needed)
+- [ ] No secrets or sensitive info

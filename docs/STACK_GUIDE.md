@@ -42,6 +42,12 @@ This is a short, beginner-friendly reference for how the portfolio stack fits to
 - `npm run lint`: run lint checks.
 - `npm run format`: format files.
 
+## Package manager policy
+
+- This repo uses **npm only**.
+- Always commit `package-lock.json` when dependencies change.
+- Do not use `pnpm` or `yarn` here.
+
 ## Tailwind quick note
 
 - Tailwind is installed by default in this repo.

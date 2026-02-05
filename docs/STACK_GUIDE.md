@@ -33,6 +33,7 @@ This is a short, beginner-friendly reference for how the portfolio stack fits to
 - `components/`: shared UI components (to be added).
 - `styles/`: global styles (to be added).
 - `public/`: static assets (images, icons).
+- `content/`: portfolio data and case studies.
 - `references/`: source material and datasets (CV master).
 
 ## Common commands

@@ -18,6 +18,11 @@ Thanks for contributing. This repo follows a Forgejo-first workflow.
 
 See `AGENTS.md` for the authoritative workflow.
 
+## Stack learning guide
+
+If you are new to the stack or need a quick refresher, read `docs/STACK_GUIDE.md`.
+Keep this guide updated when the stack or directory structure changes.
+
 ## Branch naming examples
 
 - `epic/EPIC-12-landing-page-refresh`

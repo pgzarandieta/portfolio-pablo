@@ -12,6 +12,11 @@ These instructions apply to all changes in this repository.
 - Do not merge locally.
 - Do not open PRs on GitHub.
 
+## Stack learning guide
+
+- `docs/STACK_GUIDE.md` is the simple reference for how the stack fits together.
+- If the stack or directory structure changes, update the guide in the same PR.
+
 ## Branch naming
 
 Branch names must include the Epic/Issue/Feature ID.

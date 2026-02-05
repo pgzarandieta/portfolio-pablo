@@ -1,14 +1,43 @@
 [
   {
     "category": "Data",
-    "items": ["Python", "SQL", "pandas", "ETL", "R", "MATLAB"]
+    "items": ["Python", "pandas", "SQL", "ETL", "R", "MATLAB", "Jupyter"]
   },
   {
     "category": "Engineering",
-    "items": ["3DEXPERIENCE", "CAD", "FEA", "Manufacturing"]
+    "items": [
+      "3DEXPERIENCE",
+      "CATIA",
+      "CAD",
+      "Simulink",
+      "Altair Inspire",
+      "FEA",
+      "3D printing",
+      "Welding",
+      "Lathe",
+      "Mill"
+    ]
   },
   {
     "category": "Platform",
-    "items": ["Linux", "Git", "Podman", "CI/CD", "Nginx"]
+    "items": [
+      "Linux",
+      "Git",
+      "Podman",
+      "Docker",
+      "CI/CD",
+      "Nginx",
+      "Tailscale",
+      "Home Assistant",
+      "ESPHome"
+    ]
+  },
+  {
+    "category": "Configuration",
+    "items": ["CM", "Change process", "PLM", "Requirements", "Stakeholder management", "Training"]
+  },
+  {
+    "category": "Languages",
+    "items": ["Spanish (native)", "English (C2)", "French (B1, rusty)", "Portuguese (basic)"]
   }
 ]

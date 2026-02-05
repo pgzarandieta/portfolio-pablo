@@ -16,11 +16,35 @@
     "caseStudySlug": "homelab-platform"
   },
   {
+    "id": "ai-agents-ci",
+    "title": "AI agents in CI",
+    "summary": "Issue-to-PR automation with review bots and workflows.",
+    "tags": ["Automation", "CI/CD", "Agents"],
+    "highlights": ["Issue to PR flow", "Auto-review"],
+    "caseStudySlug": "ai-agents-ci"
+  },
+  {
     "id": "airbus-data",
     "title": "Airbus data internship",
     "summary": "BOM/product structure analytics with ETL pipelines.",
     "tags": ["ETL", "Dashboards", "Skywise"],
     "highlights": ["Product structure dashboard", "ETL pipeline"],
     "caseStudySlug": "airbus-data"
+  },
+  {
+    "id": "formula-student",
+    "title": "Formula Student",
+    "summary": "CAD coordination, configuration control, and competition defense.",
+    "tags": ["CAD", "Configuration", "Motorsport"],
+    "highlights": ["Vehicle CAD coordination", "Design and cost defenses"],
+    "caseStudySlug": "formula-student"
+  },
+  {
+    "id": "iot-home",
+    "title": "Home automation + IoT",
+    "summary": "Home Assistant, ESPHome, and solar inverter monitoring.",
+    "tags": ["IoT", "Home Assistant", "ESP32"],
+    "highlights": ["Self-hosted HA", "Device integrations"],
+    "caseStudySlug": "iot-home"
   }
 ]

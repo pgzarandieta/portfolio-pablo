@@ -26,7 +26,7 @@
   {
     "id": "cm",
     "title": "Configuration Management",
-    "summary": "Change process support and CM tooling adoption.",
+    "summary": "Change process support, CM tooling adoption, and user enablement.",
     "focus": ["CM", "PLM", "change process", "training"]
   }
 ]

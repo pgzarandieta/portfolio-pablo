@@ -6,5 +6,18 @@
     "focus": "Propulsion",
     "end": "2026-10",
     "highlights": ["Thermodynamics", "Heat and mass transfer", "Materials"]
+  },
+  {
+    "id": "lse-data-science",
+    "institution": "LSE",
+    "program": "Summer Intensive - Intro to Data Science",
+    "end": "confirm",
+    "highlights": [
+      "R programming",
+      "SQL fundamentals",
+      "Linear regression",
+      "Intro to ML (basics)",
+      "Date: confirm"
+    ]
   }
 ]

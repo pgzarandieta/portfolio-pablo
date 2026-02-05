@@ -42,6 +42,7 @@ This is a short, beginner-friendly reference for how the portfolio stack fits to
 - `npm run lint`: run lint checks.
 - `npm run format`: format files.
 - `npm run format:check`: verify formatting without changing files.
+- `npm run typecheck`: run TypeScript type checks.
 
 ## Package manager policy
 

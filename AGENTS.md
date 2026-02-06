@@ -18,6 +18,12 @@ These instructions apply to all changes in this repository.
 - `docs/STACK_GUIDE.md` is the simple reference for how the stack fits together.
 - If the stack or directory structure changes, update the guide in the same PR.
 
+## Local preview (UI changes)
+
+- Start the local preview server with `scripts/preview-dev.sh start`.
+- If you switch branches or update dependencies, run `scripts/preview-dev.sh restart`.
+- Add the LAN and Tailscale URLs printed by the script to the PR template.
+
 ## Issue + PR templates and labels
 
 - Use the templates in `.gitea/ISSUE_TEMPLATE/` and `.gitea/pull_request_template.md`.
@@ -32,6 +38,7 @@ These instructions apply to all changes in this repository.
 Branch names must include the Epic/Issue/Feature ID.
 
 Examples:
+
 - `epic/EPIC-12-landing-page-refresh`
 - `issue/ISSUE-104-add-projects-section`
 - `feature/FEAT-7-profile-selector`

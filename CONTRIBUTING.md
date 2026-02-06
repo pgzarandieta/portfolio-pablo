@@ -24,6 +24,13 @@ See `AGENTS.md` for the authoritative workflow.
 If you are new to the stack or need a quick refresher, read `docs/STACK_GUIDE.md`.
 Keep this guide updated when the stack or directory structure changes.
 
+## Local preview (UI changes)
+
+- Start the local preview server with `scripts/preview-dev.sh start`.
+- Use `scripts/preview-dev.sh status` to confirm it is running.
+- If you switch branches or update dependencies, run `scripts/preview-dev.sh restart`.
+- Include the LAN and Tailscale URLs printed by the script in the PR template.
+
 ## Package manager policy
 
 - Use `npm` only.

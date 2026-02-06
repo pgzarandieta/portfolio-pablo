@@ -1,0 +1,10 @@
+:root {
+  --color-bg: var(--sb-paper);
+  --color-text: var(--sb-ink);
+  --color-accent: var(--sb-teal);
+  --color-muted: var(--sb-sand);
+}
+
+a {
+  color: var(--color-accent);
+}

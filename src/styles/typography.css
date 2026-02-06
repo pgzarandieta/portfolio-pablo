@@ -1,0 +1,59 @@
+:root {
+  --font-sans: var(--font-plex-sans, var(--sb-font-family-sans));
+  --font-mono: var(--font-plex-mono, var(--sb-font-family-mono));
+
+  --font-size-h1: var(--sb-h1-font-size);
+  --line-height-h1: var(--sb-h1-line-height);
+  --font-weight-h1: var(--sb-h1-font-weight);
+
+  --font-size-h2: var(--sb-h2-font-size);
+  --line-height-h2: var(--sb-h2-line-height);
+  --font-weight-h2: var(--sb-h2-font-weight);
+
+  --font-size-h3: var(--sb-h3-font-size);
+  --line-height-h3: var(--sb-h3-line-height);
+  --font-weight-h3: var(--sb-h3-font-weight);
+
+  --font-size-body: var(--sb-body-font-size);
+  --line-height-body: var(--sb-body-line-height);
+  --font-weight-body: var(--sb-body-font-weight);
+
+  --font-size-mono: var(--sb-mono-font-size);
+  --line-height-mono: var(--sb-mono-line-height);
+  --font-weight-mono: var(--sb-mono-font-weight);
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  font-weight: var(--font-weight-body);
+  color: var(--sb-ink);
+  background: var(--sb-paper);
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-h1);
+  font-weight: var(--font-weight-h1);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
+  font-weight: var(--font-weight-h2);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-h3);
+  font-weight: var(--font-weight-h3);
+}
+
+code,
+pre {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-mono);
+  line-height: var(--line-height-mono);
+  font-weight: var(--font-weight-mono);
+}

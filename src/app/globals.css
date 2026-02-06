@@ -1,2 +1,13 @@
 @import '../styles/brand-tokens.css';
+@import '../styles/typography.css';
+@import '../styles/layout.css';
+@import '../styles/colors.css';
 @import 'tailwindcss';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}

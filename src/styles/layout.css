@@ -1,0 +1,21 @@
+:root {
+  --content-max-width: 1120px;
+  --content-padding-x: var(--sb-space-3);
+  --content-padding-y: var(--sb-space-4);
+  --grid-gap: var(--sb-space-3);
+}
+
+.container {
+  width: min(100% - (2 * var(--content-padding-x)), var(--content-max-width));
+  margin: 0 auto;
+}
+
+.section {
+  padding: var(--content-padding-y) 0;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--grid-gap);
+}

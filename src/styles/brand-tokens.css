@@ -1,0 +1,48 @@
+/* brand-tokens.css
+
+CSS variables for Sabaris branding.
+Source of truth: sabaris-brand-system (tokens/tokens.css).
+*/
+
+:root {
+  /* Palette */
+  --sb-graphite: #121416;
+  --sb-ink: #1b2024;
+  --sb-paper: #f6f1e7;
+  --sb-sand: #e7ddce;
+  --sb-teal: #2f8f83;
+
+  /* Typography families */
+  --sb-font-family-sans: 'IBM Plex Sans', 'IBM Plex Sans Fallback', sans-serif;
+  --sb-font-family-mono: 'IBM Plex Mono', 'IBM Plex Mono Fallback', monospace;
+
+  /* Headings */
+  --sb-h1-font-size: 44px;
+  --sb-h1-line-height: 52px;
+  --sb-h1-font-weight: 600;
+
+  --sb-h2-font-size: 30px;
+  --sb-h2-line-height: 40px;
+  --sb-h2-font-weight: 500;
+
+  --sb-h3-font-size: 20px;
+  --sb-h3-line-height: 30px;
+  --sb-h3-font-weight: 500;
+
+  /* Body */
+  --sb-body-font-size: 16px;
+  --sb-body-line-height: 26px;
+  --sb-body-font-weight: 400;
+
+  /* Mono label */
+  --sb-mono-font-size: 12px;
+  --sb-mono-line-height: 18px;
+  --sb-mono-font-weight: 500;
+
+  /* Spacing multiples (unit = 8px) */
+  --sb-space-1: 8px;
+  --sb-space-2: 16px;
+  --sb-space-3: 24px;
+  --sb-space-4: 32px;
+  --sb-space-5: 40px;
+}

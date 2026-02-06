@@ -1,0 +1,65 @@
+---
+slug: "homelab-platform"
+title: "Self-hosted platform"
+summary: "A personal platform with SSO, Forgejo, and CI automation built on container stacks."
+role: "Owner / Builder"
+date: "2024–present"
+stack:
+  - Podman + Compose
+  - Nginx
+  - Forgejo
+  - CI runners
+  - Tailscale
+  - Home server
+
+tags:
+  - DevOps
+  - Platform
+  - Automation
+metrics:
+  - "Multiple services running in isolated stacks"
+  - "Automated workflows for maintenance and changes"
+confidentiality: "Public / Internal-safe"
+---
+
+# Self-hosted platform
+
+## Context
+
+I wanted a reliable, private platform for personal and family services with
+single sign‑on, automation, and reproducible deployments. The goal was to make
+it easy to add or update services without manual server drift.
+
+## My Role
+
+- Designed the architecture and service boundaries
+- Built container stacks with environment files and documentation
+- Set up CI workflows and runners for automation
+- Managed remote access and security via VPN
+
+## Stack
+
+- Podman + Compose (stack-based deployments)
+- Forgejo for repos, issues, and PRs
+- Nginx reverse proxy
+- Tailscale for secure remote access
+
+## Decisions & Tradeoffs
+
+- Separate stacks per service for safer upgrades and rollbacks
+- Prefer simple, documented workflows over complex orchestration
+- Keep network details private while still documenting the approach
+
+## Outcome & Impact
+
+- Stable platform for multiple services with consistent deployment patterns
+- Faster updates and reduced manual configuration drift
+
+## Learnings
+
+- Good defaults and documentation reduce operational overhead
+- Automation is most valuable when it removes repetitive maintenance work
+
+## Media (optional)
+
+- Placeholder for architecture diagram

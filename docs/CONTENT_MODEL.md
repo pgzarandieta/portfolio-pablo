@@ -25,6 +25,7 @@ content/
   education.json      # education + courses
   contact.json        # contact info
   case-studies/       # optional long-form project pages (MDX)
+    _template.mdx     # case study template
 ```
 
 ## Data access approach

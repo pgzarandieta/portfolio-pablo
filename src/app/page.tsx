@@ -2,7 +2,7 @@ import { ComponentGallery, Nav } from '@/components';
 
 export default function Home() {
   return (
-    <main>
+    <main className="page">
       <div className="container">
         <Nav />
         <div className="section">

@@ -6,6 +6,7 @@ This document describes the base typography, spacing, and layout rules.
 
 - Primary font: IBM Plex Sans
 - Mono font: IBM Plex Mono
+- Fonts are loaded via `next/font/google` in `src/lib/fonts.ts`
 - Token-driven sizes: `src/styles/brand-tokens.css`
 - Overrides and defaults: `src/styles/typography.css`
 
@@ -24,7 +25,7 @@ This document describes the base typography, spacing, and layout rules.
   - `.section` for vertical spacing
   - `.stack` for vertical rhythm
 
-## Fonts
+## Fonts (local option)
 
-Local fonts are optional. Place them in `public/fonts/` and they will be
-loaded with `next/font/local`. If missing, the app uses fallbacks.
+If you want to self-host fonts, place the WOFF2 files in `public/fonts/`
+and update `src/lib/fonts.ts` to use `next/font/local`.

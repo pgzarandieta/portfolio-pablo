@@ -1,61 +1,152 @@
 ---
 slug: "formula-student"
-title: "Formula Student — CAD & configuration coordination"
-summary: "Multi-year team roles in CAD, configuration coordination, and competition defenses."
-role: "Vehicle CAD & Configuration Coordinator"
-date: "2020–2023"
+title: "UPM Racing (Formula Student)"
+summary: "Trayectoria 2020–2023: diseño, fabricación y competición, con foco en frenos/suspensión, CAD governance en 3DEXPERIENCE y formación de equipos."
+role: "Suspensión/Dinámica → Coordinador CAD/3D → Handoff/Training"
+date: "2020-09 — 2023-12"
 stack:
-  - CAD (parametric)
-  - Assemblies & configuration
-  - FEA (basic)
-  - Manufacturing tools
-
+  - 3DEXPERIENCE / CATIA
+  - Altair Inspire (topology)
+  - CAD skeleton methodology
+  - Manufacturing (lathe/mill/3-axis)
+  - Arduino (RC car)
+  - FEA basics
 tags:
-  - Mechanical
-  - CAD
-  - Configuration
+  - Mechanical design
+  - Configuration management
+  - CAD governance
+  - Track testing
+  - Formula Student
 metrics:
-  - "Multi-year roles from junior to mentor"
-  - "Design and cost defense in competitions"
+  - "3 years 4 months across design, manufacturing, and competition"
+  - "Redesigned brake system after critical failure"
+  - "Introduced CAD governance + change-style workflow"
 confidentiality: "Public / Internal-safe"
 ---
 
-# Formula Student — CAD & configuration coordination
+> **Rol(es):** Cantera (RC car) → Miembro Suspensión/Dinámica → Coordinador CAD/3D + “Change/Config” → Handoff & Formación  
+> **Temas clave:** ingeniería end-to-end, gobernanza CAD, metodología Skeleton, control de cambios, integración de interfaces, fabricación/planos/tolerancias, presión de competición.
 
-## Context
+## TL;DR
+- **3 años y 4 meses** en UPM Racing (Formula Student), cubriendo diseño, fabricación, ensayos y competición.
+- **Deep dive mecánico:** rediseño del sistema de freno tras fallo crítico, con CAD, tolerancias y manufacturabilidad 3 ejes.
+- **Deep dive configuración/CAD:** coordinación 3DEXPERIENCE, metodología Skeleton y workflow tipo change process para reducir interferencias y errores.
+- **Handoff:** formación práctica y documentación para la nueva generación.
 
-Formula Student is a student engineering competition with annual rules,
-strict documentation, and judged design reviews. The team builds and competes
-with a vehicle under real constraints.
+![Hero (TODO)](/media/case-studies/formula-student/img-01-hero.svg)
 
-## My Role
+---
 
-- Coordinated CAD assemblies and configuration changes
-- Supported manufacturing and review workflows
-- Participated in design and cost defenses during competitions
-- Mentored and onboarded new team members
+## Contexto
+UPM Racing compite en **Formula Student**, donde equipos universitarios **diseñan, fabrican y validan** un monoplaza bajo una normativa estricta. El ciclo anual es end-to-end: requisitos → diseño → fabricación → ensayos → competición.
 
-## Stack
+En competición hay:
+- Inspección técnica y documentación (compliance normativa).
+- Pruebas dinámicas (brake test, slalom, endurance).
+- Pruebas estáticas ante jueces (diseño, costes, organización).
 
-- Parametric CAD + assembly management
-- Basic FEA and topology optimization (Altair Inspire)
-- Manufacturing: welding, lathe, mill
+Motivación personal: complementar teoría con ingeniería real, trabajo en equipo y presión de entrega.
 
-## Decisions & Tradeoffs
+---
 
-- Structured assemblies with a skeleton methodology for stability
-- Balanced lightweight design with manufacturability
+## Timeline y roles (confirmado)
+- **09/2020 – 09/2021:** Cantera — coche RC (Arduino + Bluetooth).
+- **09/2021 – 09/2022:** Suspensión/Dinámica — rodajes, setups, freno y prediseño driverless.
+- **09/2022 – 08/2023:** Coordinador CAD/3D — governance 3DEXPERIENCE + change flow.
+- **09/2023 – 12/2023:** Handoff — formación + documentación + workflow.
 
-## Outcome & Impact
+---
 
-- Improved collaboration and change control in CAD workflows
-- Successful technical defenses in competition settings
+## Deep Dive 1 — Mechanical Engineer: rediseño del freno
+**Situación:** durante inspección técnica, un “pisotón” al freno provocó la **rotura crítica** del sistema.  
+**Objetivo:** rediseñar el sistema para que fuese **robusto**, ajustable y fabricable.
 
-## Learnings
+### Qué hice
+- Diseño CAD del mecanismo y **verificación de interferencias**.
+- Adaptación de geometrías optimizadas a **fabricación 3 ejes**.
+- Planos + tolerancias (aprendizaje directo con el mecanizador).
+- Selección e integración de casquillos/elementos de fricción.
+- Coordinación con chasis para anclajes permitidos.
 
-- Clear configuration control reduces rework under deadlines
-- Practical manufacturing constraints shape better designs
+### Resultado
+- Sistema reforzado que **superó el “pisotón”** y validaciones posteriores.
+- Mantuvo ajuste de balance bar y frenada.
+- Lección clave: **diseño para fabricar** y tolerancias reales.
 
-## Media (optional)
+![Freno montado (TODO)](/media/case-studies/formula-student/img-06-brake-assembly.svg)
+![CAD + topología (TODO)](/media/case-studies/formula-student/img-07-brake-cad-topology.svg)
 
-- Placeholder for car photos or CAD screenshots
+---
+
+## Deep Dive 2 — Configuration Manager: CAD governance en 3DEXPERIENCE
+**Problema:** el CAD del coche era “de 2 expertos”, con dependencias frágiles y poca coordinación entre divisiones.
+
+### Qué implanté
+- **Impact analysis** obligatorio antes de tocar CAD.
+- **Guía Skeleton**: qué referenciar y cómo evitar dependencias tóxicas.
+- **Permisos por divisiones** (collaborative spaces) para trabajar en contexto sin riesgo.
+- **Revisiones controladas** + “branch/merge” a nivel de subassembly.
+- **Definition of Ready/Done** ligera (impact + revisión cerrada).
+- **Naming convention estable** (UPMR) para evitar renombres masivos.
+
+### Resultado
+- Más trabajo paralelo sin romper el modelo.
+- Mejor trazabilidad de cambios y rollback.
+
+![Árbol CAD 3DX (TODO)](/media/case-studies/formula-student/img-08-cad-structure.svg)
+![Ways of Working (TODO)](/media/case-studies/formula-student/img-09-ways-of-working.svg)
+![Naming policy (TODO)](/media/case-studies/formula-student/img-10-naming-policy.svg)
+
+### Lección dura: interferencia alerón vs chasis
+Al montar, el alerón delantero **interfería** con el nose/chasis por trabajar con versiones antiguas cruzadas.
+- **Impacto:** retrabajo y defensa de diseño más débil.
+- **Cambio:** visibilidad cross-división obligatoria durante rediseños.
+
+![Interferencia CAD (TODO)](/media/case-studies/formula-student/img-11-interference.svg)
+
+---
+
+## Deep Dive 3 — Handoff & Formación
+Diseñé e impartí formación práctica (sept–dic) para la nueva generación:
+1. 3DEXPERIENCE basics, roles y permisos.
+2. Trabajo en contexto + assemblies.
+3. Release process + revisiones.
+4. Skeleton y buenas prácticas.
+5. Documentación viva y propuesta de mejoras.
+
+**Artefactos entregados**
+- Guía Skeleton mejorada.
+- Metodología 3DX v1 (ramas + revisiones + permisos).
+- Template mínimo de Impact Analysis.
+- Naming convention v2.
+- Change Process simplificado.
+
+![Change process simplificado (TODO)](/media/case-studies/formula-student/img-12-change-process.svg)
+![Training / handoff (TODO)](/media/case-studies/formula-student/img-13-training-handoff.svg)
+
+---
+
+## Competición y operación real
+- **Hungría 2022:** aprendizaje operativo; scrutineering eléctrico del accumulator no pasó (no bajo mi ownership).  
+- **República Checa 2023:** roadtrip en 2 furgos, logística y soporte; defensa de costes ante jueces.
+
+![Hungaroring 2022 (TODO)](/media/case-studies/formula-student/img-02-hungary-2022.svg)
+![Rep. Checa 2023 (TODO)](/media/case-studies/formula-student/img-03-czech-2023.svg)
+![Campamento/logística (TODO)](/media/case-studies/formula-student/img-14-camp-logistics.svg)
+
+---
+
+## What I’d do differently
+- **Mock scrutineering** recurrente desde prediseño.
+- **Normativa como checklist viva** por subsistema.
+- **Decision gates con fechas** para evitar bloqueos tardíos.
+- **Impact analysis cross-división** antes de cambios de interfaz.
+
+---
+
+## Transferable skills
+- **Ownership y liderazgo sin título** en entornos con poco proceso.
+- **Ingeniería end-to-end**: requisitos → diseño → fabricación → ensayos → competición.
+- **CM/Change mindset** aplicado a CAD y releases.
+- **Diseño para fabricar** y tolerancias reales.
+- **Formación y enablement** para escalar conocimiento.

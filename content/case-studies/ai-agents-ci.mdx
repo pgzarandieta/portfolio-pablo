@@ -1,0 +1,99 @@
+---
+slug: "ai-agents-ci"
+title: "AI agents in CI (Forgejo workflow)"
+summary: "Automated issue → PR → review loop using Forgejo bots, runners, and human approval guardrails."
+role: "DevOps / Platform (owner)"
+date: "2024–present"
+stack:
+  - Forgejo
+  - Forgejo Runners
+  - CI workflows
+  - OpenAI/Codex
+  - OIDC / Authentik
+  - Containerized runners
+tags:
+  - AI agents
+  - CI/CD
+  - DevOps
+  - Automation
+metrics:
+  - "Issue → plan → exec → PR → review workflow in production"
+  - "Two-bot model (implementer + reviewer)"
+confidentiality: "Public / Internal-safe"
+---
+
+## Executive summary
+Implementé un flujo **issue → plan → exec → PR → review → patch** usando bots en Forgejo, con runners dedicados y control humano final. El objetivo es acelerar tareas repetitivas sin perder trazabilidad ni calidad: todo pasa por issues, PRs y revisiones, con guardrails y límites de iteración.
+
+![Agent workflow overview](/media/case-studies/ai-agents-ci/diagram-0-overview.svg)
+
+---
+
+## Contexto
+Quería un flujo de desarrollo donde la IA **no sea magia**, sino una herramienta dentro del proceso: planificación clara, implementación controlada y revisión antes de merge. Forgejo ofrecía la base perfecta (issues + PRs + workflows), así que integré agentes LLM como participantes del proceso.
+
+---
+
+## Deep dive — DevOps / Platform
+### 1) Arquitectura del sistema
+- **Forgejo** como hub (issues, PRs, reviews).
+- **Runners** dedicados:
+  - Bot implementador: permisos más amplios para build/run.
+  - Bot revisor: permisos reducidos para análisis y feedback.
+- **LLM integration** vía workflows en contenedor.
+
+![Architecture](/media/case-studies/ai-agents-ci/diagram-1-architecture.svg)
+
+### 2) Comandos y flujo
+- `run/plan` → produce plan, riesgos y preguntas.
+- `run/exec` → implementa en branch, abre PR.
+- `run/review` → revisión automática.
+- `run/patch` → aplica fixes iterativos en la misma rama.
+
+![Workflow steps](/media/case-studies/ai-agents-ci/diagram-2-workflow.svg)
+
+### 3) Guardrails y control humano
+- **Spec-first:** issues con objetivos claros.
+- **PR review obligatorio** (humano o bot revisor).
+- **Límite de iteraciones** y coste (aún en mejora).
+- **Decisión final humana** para merge.
+
+![Guardrails](/media/case-studies/ai-agents-ci/diagram-3-guardrails.svg)
+
+---
+
+## Honest disclaimer (AI-assisted development)
+Este proyecto es **AI-assisted**. Mi valor está en **diseñar, especificar, integrar y operar** el sistema. Uso IA como acelerador, pero:
+- Yo defino objetivos, constraints y criterios de aceptación.
+- La IA implementa a partir de specs.
+- Yo valido end-to-end y reviso componentes críticos.
+- Todo pasa por PRs, revisión y rollback si hace falta.
+
+---
+
+## Resultados y límites (honesto)
+- El flujo funciona y se usa para tareas reales.
+- Reduce tiempo en cambios repetitivos.
+- **Limitación actual:** bug en el contador de iteraciones puede generar loops y coste inesperado (ya identificado).
+
+![Cost loop](/media/case-studies/ai-agents-ci/diagram-4-cost-loop.svg)
+
+---
+
+## Qué falta para “venderlo” más fuerte
+- Guardrails de coste más estrictos.
+- Mejor hardening de runners.
+- Evidencias visuales: capturas de issues/PRs reales (anonimizadas).
+
+---
+
+## Learnings
+- El mejor lugar para IA es **dentro del workflow humano** (issues + PRs).
+- Sin guardrails, la IA puede consumir presupuesto rápidamente.
+- Separar runners por permisos reduce riesgos.
+
+---
+
+## Links públicos (opcional)
+- https://forgejo.org/
+- https://openai.com/

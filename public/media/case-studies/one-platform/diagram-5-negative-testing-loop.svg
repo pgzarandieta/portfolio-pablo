@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <rect width="1200" height="675" fill="#F6F2EC" />
+  <rect x="40" y="40" width="1120" height="595" fill="#FFFFFF" stroke="#C9C1B8" stroke-width="2" stroke-dasharray="10 8" />
+  <text x="600" y="310" font-family="Arial, sans-serif" font-size="28" text-anchor="middle" fill="#3E3A36">Negative testing loop</text>
+  <text x="600" y="355" font-family="Arial, sans-serif" font-size="16" text-anchor="middle" fill="#6E665D">Placeholder diagram (replace with final visual)</text>
+</svg>

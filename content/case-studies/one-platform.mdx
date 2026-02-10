@@ -1,62 +1,257 @@
 ---
 slug: "one-platform"
-title: "One Platform MVP1 rollout"
-summary: "Customer-side requirements, UAT, and training for a CM tooling rollout in a high-rigor aerospace program."
-role: "CM / Change Process (Customer-side)"
+title: "Eurodrone CM + One Platform"
+summary: "Gestión de configuración en Eurodrone y rol cliente en One Platform, traduciendo procesos a 3DEXPERIENCE, validando con UAT y liderando formación y adopción."
+role: "Configuration Management Analyst (ALTEN, embedded at Airbus)"
 date: "2023–2025"
 stack:
   - 3DEXPERIENCE (PLM)
   - Jira
   - Confluence
+  - SAFe (Scaled Agile)
+  - Change Process
+  - Configuration Management
+  - UAT
+  - Training / Enablement
 tags:
   - Configuration Management
   - Change Process
+  - 3DEXPERIENCE
+  - PLM
   - UAT
+  - Training
 metrics:
   - "MVP1 deployed in production"
   - "Trained ~150 users across ~32 sessions"
+  - "~15–20 bugs/IRs identified in equipment release slice"
 confidentiality: "Public / Internal-safe"
 ---
 
-# One Platform MVP1 rollout
+**Rol:** Configuration Management Analyst (ALTEN, embedded at Airbus)  
+**Ubicación:** Getafe (Madrid)  
+**Periodo:** 08/2023 – 09/2025  
+**Scope personal:** Change Process + Configuration definition + Equipment Release / Teams management + UAT + Training/Adoption
 
-## Context
+> **TL;DR**  
+> En el programa **Eurodrone** trabajé ~2 años en **Gestión de Configuración (CM)**, en un entorno de procesos altamente exigentes. Paralelamente participé desde el inicio como “cliente” en **One Platform**, iniciativa de transformación para unificar y modernizar procesos a nivel Airbus, donde una pieza central era el backbone **3DEXPERIENCE** para **PLM + Change Process + Configuración**.  
+> Contribuí a traducir procesos de alto nivel (Change / Equipment Release) en lógicas implementables en la herramienta, validé entregas con **UAT end-to-end** (incluyendo negative testing) y lideré gran parte de la **formación y adopción** en Getafe.
 
-Eurodrone is a high‑rigor aerospace program with strict configuration control.
-A new internal platform (based on 3DEXPERIENCE) was being rolled out to support
-CM and change processes. I worked on the customer side to define requirements
-and validate deliveries before go‑live.
+---
 
-## My Role
+## 1) Contexto: ¿Qué era One Platform y por qué importaba?
+**One Platform** es una iniciativa a nivel grupo para **unificar, modernizar y mejorar** los procesos de Airbus (comercial, helicópteros, defensa, espacio) con visión de futuros programas.  
+Dentro de One Platform, **3DEXPERIENCE** actuaba como backbone para conectar el ciclo de vida: **requisitos → ingeniería de sistemas → diseño → manufacturing → servicios**, junto con **gestión de configuración** y un **change process** riguroso e integrado. También coexistían integraciones con otras herramientas (p.ej. eCAD) y con ERP aguas abajo.
 
-- Supported the program CM team with change process documentation readiness
-- Collected needs from CM users and translated them into clear requirements
-- Participated in UAT cycles and reported issues/feedback
-- Prepared and delivered training sessions for end users
+> ✅ *Cómo lo cuento públicamente:* sin entrar en detalles internos, se explica como “backbone PLM + Change + Configuración” dentro de una iniciativa de transformación a escala corporativa.
 
-## Stack
+![One Platform map (simplified)](/media/case-studies/one-platform/diagram-1-one-platform-map.svg)
 
-- 3DEXPERIENCE (PLM)
-- Jira / Confluence
-- CM change process workflows
+## 1.1 Enfoque de Ingeniería de Sistemas: metodología “Multi-View” (visión por vistas)
+Un elemento clave de los nuevos procesos era trabajar con una metodología tipo **Multi-View**, donde el producto y su evolución se modelan y gobiernan mediante **vistas coherentes** según la necesidad de cada disciplina, manteniendo **trazabilidad** y consistencia a través del change process.
 
-## Decisions & Tradeoffs
+### Vistas principales (simplificado)
+- **Requirements View**  
+  Estructura tipo sistema/subsistema (cascada) para capturar requisitos **de cliente**, **internos** y **de suppliers**. Esta vista sirve como base de trazabilidad.
+- **Logical / Functional View (Arquitectura)**  
+  Traducción de requisitos a **funciones, lógicas y relaciones** entre subsistemas (visión de arquitectura del sistema).  
+  *(Aquí se empieza a hablar de dependencias e interfaces a nivel funcional).*  
+- **Equipment View (Equipos / equipos con supplier)**  
+  Aterriza la arquitectura a **equipos** que deben existir, con sus responsabilidades y relaciones, y habilita el trabajo de **equipment release** e interacción con suppliers.
+- **Technical View (inputs técnicos: e.g. conexiones/electrical)**  
+  Vista técnica para capturar e integrar inputs (por ejemplo conexiones eléctricas u otros detalles técnicos que alimentan el diseño y verificación).
+- **Design View (diseño detallado / piezas)**  
+  Estructura de producto a nivel de diseño (detalle/partes) alineada con equipos/sistemas para cerrar el loop “requisitos → producto”.
+- **Service View (aguas abajo / servicios)**  
+  Vista orientada a consumo posterior (servicios/operación), todavía en maduración durante mi etapa, pero crítica para garantizar que los datos del producto son reutilizables más allá del diseño.
 
-- Prioritized features that unlocked MVP1 adoption over nice‑to‑have tooling
-- Focused on simple, repeatable flows to reduce training time and errors
+### Cómo conectaba esto con mi trabajo (CM + Change)
+Mi trabajo se apoyaba en esta lógica multi-view porque:
+- **La configuración se define “por vistas”** (qué objetos existen, qué baselines hay y cómo se versionan) y las variantes/opciones se gestionan con aplicabilidad.
+- **El Change Process** se convierte en el mecanismo que gobierna modificaciones a través de vistas: cuando algo cambia, hay que asegurar consistencia entre requisitos, arquitectura, equipos y diseño.
+- El valor principal no era “dibujar diagramas”, sino asegurar que las vistas podían **operarse** en una plataforma PLM (3DEXPERIENCE) con reglas, revisiones, gates y trazabilidad.
 
-## Outcome & Impact
+![Multi-View map](/media/case-studies/one-platform/diagram-1b-multiview-map.svg)
 
-- MVP1 deployed in production
-- ~150 users trained across ~32 sessions
-- Supported adoption during the first months after go‑live
+---
 
-## Learnings
+## 2) Mi rol y evolución (sin inflar)
+Desde el inicio estuve ligado a One Platform, con una rampa de aprendizaje fuerte.
 
-- Clear acceptance criteria reduce UAT cycles
-- Training success depends on small, realistic exercises
-- Aligning CM needs early prevents costly rework later
+### Fase 0–1 (primeros 3–4 meses): onboarding + soporte CM
+- Soporte directo a Configuration Manager del programa para aprender el proceso real de CM.
+- Paralelamente, exposición temprana a One Platform pre-MVP1 para entender la herramienta y el enfoque.
 
-## Media (optional)
+### Fase 2 (resto del periodo): cliente CM/PLM + UAT + training + soporte operativo
+- Participación activa en exploraciones/dossiers, definición de necesidades, campañas de test, y enablement.
+- Focal point de soporte operativo en Getafe para dudas/bloqueos durante adopción.
 
-- Placeholder for rollout diagram or training material screenshot
+---
+
+## 3) Mi “slice” dentro de One Platform (qué hacía yo exactamente)
+### Pilar A — Change Process (muy exigente en Airbus)
+- Definición y endurecimiento de flujos de cambio para que el proceso fuese **riguroso** y trazable.
+- Exigencia “customer-side” de customizaciones; el change process acabó apoyándose en una **app muy customizada** integrada con datos de 3DEXPERIENCE.
+
+### Pilar B — Configuration definition (OOTB + custom)
+- Definición de necesidades de configuración y vistas (requisitos / sistemas / arquitectura / etc.).
+- Trabajo con part numbers y la lógica de configuración asociada.
+
+### Pilar C — Equipment Release / Teams management
+- Participación fuerte en el **Equipment Release Process** (con suppliers y exigencia alta).
+- Aterrizaje de revisiones/nomenclaturas/estados y gates de release para asegurar cumplimiento de proceso.
+
+### Transversales
+- **UAT / test campaigns:** validación end-to-end y apertura de bugs / improvement requests.
+- **Training & adoption:** diseño de materiales, sesiones, ejercicios guiados y soporte posterior.
+
+![Scope at a glance](/media/case-studies/one-platform/diagram-0-scope.svg)
+
+---
+
+## 4) Cómo trabajábamos (delivery real, entendible por cualquiera)
+El proyecto se organizaba con enfoque **Scaled Agile / SAFe** a alto nivel.
+
+**Esquema simplificado del flujo:**
+- **Epic** (p.ej. Change Process)  
+  → **Business Release**  
+  → **Dossier** (use cases + requirements + criterios de aceptación; “Definition of Ready”)  
+  → Implementación por desarrolladores  
+  → **Test Campaign** (UAT end-to-end como cliente)  
+  → **Release** (desarrollo continuo)
+
+Mi aportación típica en cada etapa:
+- Traía **use cases** del proceso real y los convertía en requisitos verificables.
+- Alineaba con **functional architects** (expertos en 3DEXPERIENCE) para traducir a lógicas/feats implementables.
+- En test: no validaba solo “la feature”, sino el **end-to-end** (incluyendo escenarios de bypass).
+- Reportaba defects/IRs y retesteaba en siguientes iteraciones.
+
+**Artefactos que generaba/gestionaba (ejemplos):**
+- Use cases + requirements (Confluence / dossier)
+- Criterios de aceptación + checklist UAT
+- Bugs / improvement requests (Jira)
+- Material de formación (slides, guías, ejercicios)
+- Soporte operativo “en vivo” (resolución de bloqueos con usuarios)
+
+![SAFe delivery flow (simplified)](/media/case-studies/one-platform/diagram-2-safe-flow.svg)
+
+---
+
+## 5) Antes vs Después (por qué MVP1 fue “día y noche”)
+### Antes (doc-centric)
+- Dossiers del change process en **PowerPoint** gestionados en **SharePoint** (check-in / check-out).
+- Duplicidad de información en **Jira**, con inconsistencias entre PPT y ticket.
+- Mucho trabajo manual y fricción: “patata” operativa y fácil de romper.
+
+### Después (data-centric)
+- Cambio de “deliverable = documento” a “deliverable = datos + visualización en herramienta”.
+- Integración de change process con objetos reales en 3DEXPERIENCE, permitiendo:
+  - **impact analysis** ligado a los objetos que cambian,
+  - evidencias más ricas (p.ej. comentarios/markups sobre piezas),
+  - menos duplicidad y más trazabilidad.
+
+![Doc-centric → Data-centric](/media/case-studies/one-platform/diagram-3-doc-to-data.svg)
+
+---
+
+## 6) Deep dive — Caso representativo (Equipment Release: revisiones + gates)
+### Objetivo
+Asegurar que el **Equipment Release Process** no fuese “hackeable”: que la liberación de una revisión estuviese **gobernada** por estados/atributos y por el flujo correcto.
+
+### Qué se implementó (resumen)
+- El objeto clave evolucionaba por revisiones (p.ej. “equipment serial part number” con revisiones).
+- Progresión por estados (ej. management state 1→2…).
+- **Gate de release:** solo se puede liberar una revisión si se cumplen atributos obligatorios + estado correcto.
+- Este hardening era clave para preservar la consistencia entre la **Equipment View** y las vistas aguas abajo (diseño/technical), evitando que un release “saltado” rompiese la trazabilidad del sistema.
+
+### Qué hice yo (acciones)
+- Propuse usar al máximo la capacidad **out-of-the-box** de gestión de revisiones, combinada con reglas Airbus (nomenclaturas, invariants/variants, etc.).
+- Aterricé la lógica en el dossier (use cases + aceptación) y la alineé con functional architects.
+- Ejecuté **UAT end-to-end** con mentalidad de “negative testing”:
+  - Intentar liberar sin atributos → ¿bloquea?
+  - Intentar “hacer trampas” (p.ej. cambios manuales indebidos) → ¿se puede?  
+  - Si se podía, abría bug/IR para endurecer la lógica.
+
+### Validación (cómo se probaba)
+- Crear objeto → forzar escenarios incompletos → intentar release → comprobar bloqueo
+- Completar atributos → avanzar estado → release → comprobar cumplimiento
+- Probar bypass (manual edits / inconsistencias) → levantar IR → retest tras fix
+
+### Resultado
+- Endurecimiento del flujo: release con enforcement real, reduciendo margen de error y mejorando rigor de proceso.
+- Para este slice: **~15–20** bugs / improvement requests detectados y resueltos.
+- A lo largo de la etapa completa: evolución en **~4–5 releases** (desarrollo continuo).
+
+![Equipment object lifecycle](/media/case-studies/one-platform/diagram-4-equipment-lifecycle.svg)
+
+![Negative testing loop](/media/case-studies/one-platform/diagram-5-negative-testing-loop.svg)
+
+---
+
+## 7) Rollout + Training + Adoption (el componente humano)
+### Training intensivo
+- Periodo intensivo: **septiembre → febrero** (internos Airbus).
+- Después: formaciones **bajo demanda** ~**1/mes** (externos / nuevas incorporaciones) hasta mi salida.
+
+### Audiencias y formato (Getafe)
+- Ingeniería de sistemas: **~80** personas  
+- Diseño mecánico: **~80** personas  
+- Configuración (CM dept): **~15** personas (sesiones específicas + soporte directo)
+
+Formato típico:
+- Grupos de **~10 personas** (rango 10–15).
+- Training con **entorno de práctica** + ejercicios end-to-end guiados.
+- Para sistemas: sesiones más largas (incluyendo detalle de Equipment Release / teams management).
+- Para diseño: foco en change process + configuración necesaria para su rol.
+
+### Soporte operativo (“operational support”)
+- Además de training, actuaba como punto de contacto en Getafe para desbloquear dudas reales de uso (más directo que “abre ticket y espera”).
+
+![Training timeline + funnel](/media/case-studies/one-platform/diagram-6-training-funnel.svg)
+
+---
+
+## 8) Outcomes (honesto)
+- Tras el training y el despliegue, se empezó a ver uso **end-to-end real** en MVP1 por parte de diseño y sistemas.
+- En ~2 meses bajó la resistencia inicial: el cambio empezó a “comprarse” al percibirse mejoras claras frente al flujo anterior.
+
+> Nota: mi salida fue antes de poder afirmar “adopción total” consolidada, pero sí se observaron señales claras de uso y menor rechazo.
+
+---
+
+## 9) Lessons learned
+- **Escala real:** un programa aero/defensa es un ecosistema enorme (países, empresas, equipos), y el software/proceso debe sobrevivir a esa complejidad.
+- **Adopción humana:** lo difícil no es la herramienta, es el cambio; aprendí a reducir resistencia con training práctico y soporte cercano (especialmente con perfiles muy senior).
+- **Stakeholders everywhere:** aprendí a mapear dependencias, detectar “a quién nos olvidamos” (servicios aguas abajo, etc.) y alinear mediante workshops y negociación.
+- **Customer-side delivery:** use cases → aceptación → UAT E2E → bugs/IR → retest, con releases recurrentes.
+- **Doc → Data:** viví el salto de procesos documentales frágiles a flujos integrados data-centric con mejor trazabilidad.
+
+---
+
+## 10) What I’d do differently (si volviera al día 1)
+- **Stakeholder network antes:** invertir más en construir red de contactos desde el primer día para acelerar decisiones y evitar bloqueos.
+- **Training más “producto” para líderes:** mejorar el diseño de formaciones clave (material, FAQs, ejercicios) antes de entrenar a team leaders.
+- **Campaña de comunicación interna:** más storytelling/propaganda del “por qué” y “qué gana cada rol”; vi gente llegar al training sin contexto.
+
+---
+
+## 11) Lo que quiero que recuerdes de mí (takeaways)
+1) **Traducción proceso→software:** soy fuerte definiendo necesidades, descomponiendo procesos de alto nivel y convirtiéndolos en requisitos/lógicas implementables en software en entornos exigentes.  
+2) **Enablement real:** sé formar a la gente (training práctico end-to-end) y acompañar adopción con soporte operativo.  
+3) **Experiencia en proyectos gigantes:** he trabajado en dos iniciativas extremadamente ambiciosas (**Eurodrone** y **One Platform**), aprendiendo a navegar complejidad y múltiples stakeholders.
+
+---
+
+## 12) Cómo encaja esto con mis perfiles objetivo
+- **Systems Engineering (Aero/Drones):** experiencia práctica en un enfoque **multi-view** (requirements, logical/functional architecture, equipment, technical, design y service views), entendiendo cómo se mantiene la **trazabilidad** y la consistencia entre vistas mediante **configuration baselines** y **change governance**. Trabajo cotidiano con múltiples stakeholders para alinear vistas e impactos (incl. suppliers vía equipment release).
+
+- **DevOps/Platform (IA agents):** mentalidad de plataforma, adopción, delivery continuo, UAT, hardening; y experiencia personal self-hosted + automatización.
+- **Configuration Management:** núcleo del caso; cambio de doc-centric a data-centric y gobernanza de revisiones/estados.
+- **Data / Analytics:** transición a entregables basados en datos, visualización e impacto analysis ligado a objetos.
+
+---
+
+## 13) Visuals & links (públicos, sin capturas internas)
+### Links de contexto (opcionales)
+- SAFe (Scaled Agile Framework): https://framework.scaledagile.com/
+- 3DEXPERIENCE (Dassault Systèmes): https://www.3ds.com/3dexperience
+- Airbus & Dassault (partnership, referencia pública): https://www.airbus.com/en/newsroom/press-releases/2019-02-airbus-and-dassault-systemes-embark-on-strategic-partnership-to

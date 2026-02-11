@@ -1,40 +1,61 @@
 import Layout from '@/components/Layout';
 import content from '@/lib/content';
+import { getCopy } from '@/lib/i18n';
+import { getLocale } from '@/lib/locale.server';
 import Link from 'next/link';
 
-const formatDate = (value: string) => {
+const formatDate = (value: string, locale: string) => {
   if (!value) return '';
-  if (value.toLowerCase() === 'present') return 'Present';
-  if (value.toLowerCase() === 'confirm') return 'Confirm';
+  if (value.toLowerCase() === 'present') {
+    if (locale === 'es') return 'Actual';
+    if (locale === 'zh') return '至今';
+    return 'Present';
+  }
+  if (value.toLowerCase() === 'confirm') {
+    if (locale === 'es') return 'Confirmar';
+    if (locale === 'zh') return '待确认';
+    return 'Confirm';
+  }
 
   const date = new Date(`${value}-01T00:00:00`);
   if (Number.isNaN(date.getTime())) {
     return value;
   }
 
-  return new Intl.DateTimeFormat('en', {
+  return new Intl.DateTimeFormat(locale, {
     month: 'short',
     year: 'numeric',
   }).format(date);
 };
 
-export default function ResumePage() {
+export default async function ResumePage() {
+  const locale = await getLocale();
+  const t = getCopy(locale);
+  const isEnglish = locale === 'en' || locale === 'zh';
   const resumeDownloads = [
     {
-      label: 'CM / Systems (ES, ATS)',
-      file: '/resume/Pablo_Garcia-Zarandieta_CV_CM-Systems_ES_ATS.pdf',
+      label: isEnglish ? 'CM / Systems (EN, ATS)' : 'CM / Sistemas (ES, ATS)',
+      file: isEnglish
+        ? '/resume/Pablo_Garcia-Zarandieta_CV_CM-Systems_EN_ATS.pdf'
+        : '/resume/Pablo_Garcia-Zarandieta_CV_CM-Systems_ES_ATS.pdf',
     },
     {
-      label: 'Mechanical (ES, ATS)',
-      file: '/resume/Pablo_Garcia-Zarandieta_CV_Mechanical_ES_ATS.pdf',
+      label: isEnglish ? 'Mechanical (EN, ATS)' : 'Mecánico (ES, ATS)',
+      file: isEnglish
+        ? '/resume/Pablo_Garcia-Zarandieta_CV_Mechanical_EN_ATS.pdf'
+        : '/resume/Pablo_Garcia-Zarandieta_CV_Mechanical_ES_ATS.pdf',
     },
     {
-      label: 'Data Analytics (ES, ATS)',
-      file: '/resume/Pablo_Garcia-Zarandieta_CV_Data-Analytics_ES_ATS.pdf',
+      label: isEnglish ? 'Data Analytics (EN, ATS)' : 'Analítica de datos (ES, ATS)',
+      file: isEnglish
+        ? '/resume/Pablo_Garcia-Zarandieta_CV_Data-Analytics_EN_ATS.pdf'
+        : '/resume/Pablo_Garcia-Zarandieta_CV_Data-Analytics_ES_ATS.pdf',
     },
     {
-      label: 'Platform / DevOps (ES, ATS)',
-      file: '/resume/Pablo_Garcia-Zarandieta_CV_Platform-DevOps_ES_ATS.pdf',
+      label: isEnglish ? 'Platform / DevOps (EN, ATS)' : 'Plataforma / DevOps (ES, ATS)',
+      file: isEnglish
+        ? '/resume/Pablo_Garcia-Zarandieta_CV_Platform-DevOps_EN_ATS.pdf'
+        : '/resume/Pablo_Garcia-Zarandieta_CV_Platform-DevOps_ES_ATS.pdf',
     },
   ];
 
@@ -42,14 +63,16 @@ export default function ResumePage() {
     <Layout>
       <section className="container section">
         <div className="stack">
-          <h1>Resume</h1>
+          <h1>{t.resume.title}</h1>
           <p className="text-lg text-[var(--sb-ink)]/80">
-            {content.site.tagline} based in {content.site.location}.
+            {locale === 'es'
+              ? `${content.site.tagline} con base en ${content.site.location}.`
+              : locale === 'zh'
+                ? `${content.site.tagline}，常驻 ${content.site.location}。`
+                : `${content.site.tagline} based in ${content.site.location}.`}
           </p>
           <div className="stack">
-            <p className="text-sm text-[var(--sb-ink)]/70">
-              Download the PDF that matches each role.
-            </p>
+            <p className="text-sm text-[var(--sb-ink)]/70">{t.resume.subtitle}</p>
             <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
               {resumeDownloads.map((resume) => (
                 <article
@@ -61,9 +84,9 @@ export default function ResumePage() {
                     href={resume.file}
                     download
                     className="mt-3 inline-flex items-center gap-2 rounded-full border border-[var(--sb-ink)]/20 px-3 py-1.5 text-xs uppercase tracking-[0.2em]"
-                    aria-label={`Download ${resume.label} CV (PDF)`}
+                    aria-label={`${t.resume.download} ${resume.label} (PDF)`}
                   >
-                    <span>Download PDF</span>
+                    <span>{t.resume.download}</span>
                     <svg
                       aria-hidden="true"
                       viewBox="0 0 20 20"
@@ -81,14 +104,16 @@ export default function ResumePage() {
               href="/contact"
               className="inline-flex items-center gap-2 rounded-full border border-[var(--sb-ink)]/20 px-4 py-2"
             >
-              Contact
+              {t.resume.contact}
             </Link>
-            <span className="text-[var(--sb-ink)]/60">Email: {content.contact.email}</span>
+            <span className="text-[var(--sb-ink)]/60">
+              {t.resume.emailLabel}: {content.contact.email}
+            </span>
           </div>
         </div>
       </section>
       <section className="container section">
-        <h2>Experience</h2>
+        <h2>{t.resume.experience}</h2>
         <div className="mt-6 grid gap-4">
           {content.experience.map((role) => (
             <article
@@ -103,7 +128,7 @@ export default function ResumePage() {
                   </p>
                 </div>
                 <div className="text-xs uppercase tracking-[0.2em] text-[var(--sb-ink)]/60">
-                  {formatDate(role.start)} — {formatDate(role.end)}
+                  {formatDate(role.start, locale)} — {formatDate(role.end, locale)}
                 </div>
               </div>
               <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-[var(--sb-ink)]/80">
@@ -116,7 +141,7 @@ export default function ResumePage() {
         </div>
       </section>
       <section className="container section">
-        <h2>Education</h2>
+        <h2>{t.resume.education}</h2>
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {content.education.map((item) => (
             <article
@@ -127,7 +152,7 @@ export default function ResumePage() {
               <p className="text-sm text-[var(--sb-ink)]/70">{item.institution}</p>
               <p className="text-xs uppercase tracking-[0.2em] text-[var(--sb-ink)]/60">
                 {item.focus ? `${item.focus} · ` : ''}
-                {formatDate(item.end)}
+                {formatDate(item.end, locale)}
               </p>
               <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-[var(--sb-ink)]/80">
                 {item.highlights.map((highlight) => (
@@ -139,7 +164,7 @@ export default function ResumePage() {
         </div>
       </section>
       <section className="container section">
-        <h2>Skills</h2>
+        <h2>{t.resume.skills}</h2>
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {content.skills.map((group) => (
             <article

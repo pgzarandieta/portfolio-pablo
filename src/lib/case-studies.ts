@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
+import type { Locale } from './locale';
 
 export type CaseStudyFrontmatter = {
   slug: string;
@@ -19,20 +20,36 @@ export type CaseStudy = CaseStudyFrontmatter & {
 };
 
 const CASE_STUDIES_DIR = path.join(process.cwd(), 'content', 'case-studies');
+const CASE_STUDIES_LOCALE_DIRS: Partial<Record<Locale, string>> = {
+  en: path.join(CASE_STUDIES_DIR, 'en'),
+};
 
 const isCaseStudyFile = (fileName: string) =>
   fileName.endsWith('.mdx') && !fileName.startsWith('_');
 
-export const getCaseStudies = (): CaseStudy[] => {
+const resolveCaseStudyPath = (fileName: string, locale?: Locale) => {
+  const localeDir = locale ? CASE_STUDIES_LOCALE_DIRS[locale] : undefined;
+  const localizedPath = localeDir ? path.join(localeDir, fileName) : null;
+  const basePath = path.join(CASE_STUDIES_DIR, fileName);
+
+  if (localizedPath && fs.existsSync(localizedPath)) {
+    return localizedPath;
+  }
+
+  return basePath;
+};
+
+export const getCaseStudies = (locale?: Locale): CaseStudy[] => {
   if (!fs.existsSync(CASE_STUDIES_DIR)) {
     return [];
   }
 
   const files = fs.readdirSync(CASE_STUDIES_DIR).filter(isCaseStudyFile);
+  const effectiveLocale = locale === 'zh' ? 'en' : locale;
 
   return files
     .map((fileName) => {
-      const fullPath = path.join(CASE_STUDIES_DIR, fileName);
+      const fullPath = resolveCaseStudyPath(fileName, effectiveLocale);
       const raw = fs.readFileSync(fullPath, 'utf8');
       const { data, content } = matter(raw);
       const frontmatter = data as CaseStudyFrontmatter;
@@ -47,7 +64,7 @@ export const getCaseStudies = (): CaseStudy[] => {
     .filter((item) => item.slug && item.title);
 };
 
-export const getCaseStudyBySlug = (slug: string): CaseStudy | null => {
-  const caseStudies = getCaseStudies();
+export const getCaseStudyBySlug = (slug: string, locale?: Locale): CaseStudy | null => {
+  const caseStudies = getCaseStudies(locale);
   return caseStudies.find((item) => item.slug === slug) ?? null;
 };

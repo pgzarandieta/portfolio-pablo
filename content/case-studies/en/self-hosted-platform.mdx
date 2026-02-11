@@ -1,0 +1,126 @@
+---
+slug: "homelab-platform"
+title: "Self-hosted platform (Homelab)"
+summary: "Self-hosted platform with SSO, reverse proxy, CI/CD, and AI agents for a reproducible multi-user workflow."
+role: "Platform / DevOps (owner)"
+date: "2023–present"
+stack:
+  - Fedora Server
+  - Podman / Podman-Compose
+  - Nginx
+  - Tailscale
+  - Authentik (OIDC/SAML/Forward Auth)
+  - Forgejo + Runners
+  - Nextcloud + Collabora
+  - Firefly III + Metabase
+  - FastAPI / HTMX (Finance ETL Console)
+tags:
+  - Platform engineering
+  - Self-hosted
+  - SSO
+  - CI/CD
+  - AI agents
+metrics:
+  - "Multi-user SSO with Authentik across core services"
+  - "Automated issue → PR → review loop with Forgejo bots"
+  - "Finance ETL app deployed with OIDC + Firefly API integration"
+confidentiality: "Public / Internal-safe"
+primaryProfile: "devops"
+secondaryProfiles:
+  - "data"
+---
+
+## TL;DR
+I built a **self-hosted homelab** on Fedora Server with **Podman/Podman-Compose**, **Nginx reverse proxy**, **Tailscale** for secure access, and **Authentik** as the identity provider (SSO). On top of that, I deployed real‑world suites (family/partner use) and productivity: Nextcloud/Collabora, Forgejo + runners + registry, Firefly III + Metabase, and a custom app (Finance ETL Console). I also integrated **LLM agents in Forgejo** (plan/exec/review/patch) to automate PRs with human guardrails.
+
+## Role & Scope
+**Role:** Platform / DevOps (owner)  
+**Period:** 2023–present  
+**Scope:** platform architecture, SSO/security, containers and deployments, daily operations, CI/CD, and workflow automation.
+
+**AI-assisted disclaimer (honest):**
+- I define goals, scope, risks, and acceptance criteria.
+- The AI implements changes based on clear specs.
+- I validate end‑to‑end, review critical diffs, and check logs/behavior.
+- Quality control via PRs, reviews, and rollback if needed.
+
+## Profile relevance
+- Primary: DevOps / Platform (infra, CI/CD, automation)
+- Secondary: Data (finance ETL + dashboards)
+
+## Context
+I wanted my own infrastructure (privacy + control) with secure remote access, SSO and permissions, and self‑hosted apps with product thinking (docs, reproducibility, roadmap). I also wanted to automate development with CI/CD and integrated agents.
+
+## Deep dives
+
+### Deep dive — Platform infra (runtime + proxy + access)
+**What I implemented**
+- Fedora Server + Podman/Compose runtime.
+- Nginx reverse proxy with TLS (Tailscale certs).
+- Subpath routing, local DNS with Pi-hole.
+- `infra/` + `data/` structure separating stacks and persistence.
+
+**Tradeoffs / decisions**
+- Subpaths vs subdomains (less initial friction, more complexity for some apps).
+- Partial autostart (systemd/quadlets pending).
+
+![Architecture diagram](/media/case-studies/homelab-platform/diagram-0-architecture.svg)
+![Infra flow](/media/case-studies/homelab-platform/diagram-1-infra-flow.svg)
+
+### Deep dive — Identity & access (SSO)
+- Authentik as the central IdP.
+- OIDC/SAML/Forward Auth depending on the app.
+- Goal: reduce friction and improve traceability per user/group.
+
+### Deep dive — AI agents in CI (Dev workflow)
+[Go to standalone case study: AI agents in CI →](/projects/ai-agents-ci)
+
+**How it works**
+- Forgejo bots (`sabaris-ai-bot`, `sabaris-review-bot`).
+- Issue commands: `run/plan`, `run/exec`, `run/review`, `run/patch`.
+- Dedicated runners: implementer vs reviewer (least‑privilege).
+
+**Results & limits**
+- Faster iterations with human final control.
+- **Current gap:** iteration counter bug → cost risk.
+
+![Agent flow](/media/case-studies/homelab-platform/diagram-2-agent-flow.svg)
+
+### Deep dive — Finance ETL Console (own product)
+[Go to standalone case study: Finance ETL Console →](/projects/finance-etl-console)
+
+Web app to automate Firefly imports:
+- Jinja2/HTMX UI + FastAPI.
+- OIDC with Authentik.
+- Local dedupe + Firefly API dedupe.
+- Bank-specific parsers (CSV/PDF).
+
+![ETL flow](/media/case-studies/homelab-platform/diagram-4-etl-flow.svg)
+
+### Deep dive — Service suite (high level)
+- **Office:** Nextcloud + Collabora, Joplin (SSO pending).
+- **DevTools:** Forgejo + runners + registry, code-server.
+- **Finance:** Firefly III + Metabase + Finance ETL Console.
+
+![Service map](/media/case-studies/homelab-platform/diagram-3-service-map.svg)
+
+## Outcomes & Impact
+- Operational self‑hosted platform with multi‑user SSO.
+- Automated development workflows with guardrails.
+- Finance app deployed and in use.
+
+**Roadmap (honest)**
+- P0: backups MVP + restore test, close direct ports and route through Nginx, Podman network standard.
+- P1: systemd/quadlets autostart, unified secrets/vars, runner hardening, agent cost guardrails.
+
+## Learnings
+- **SSO is a game‑changer** for multi‑user adoption.
+- **Agents + PRs** fit human workflows well.
+- Publishing infra is a project in itself (sanitized, documented, reproducible).
+
+## Media / Evidence
+- Diagrams: architecture, infra flow, agents, service map, ETL flow.
+- Context links:
+  - https://tailscale.com/
+  - https://podman.io/
+  - https://goauthentik.io/

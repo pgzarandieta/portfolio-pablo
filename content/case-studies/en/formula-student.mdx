@@ -1,0 +1,147 @@
+---
+slug: "formula-student"
+title: "UPM Racing (Formula Student)"
+summary: "2020–2023 track: design, manufacturing, and competition, focused on brakes/suspension, CAD governance in 3DEXPERIENCE, and team handoff." 
+role: "Suspension/Dynamics → CAD Coordinator → Handoff/Training"
+date: "2020-09 — 2023-12"
+stack:
+  - 3DEXPERIENCE / CATIA
+  - Altair Inspire (topology)
+  - CAD skeleton methodology
+  - Manufacturing (lathe/mill/3-axis)
+  - Arduino (RC car)
+  - FEA basics
+tags:
+  - Mechanical design
+  - Configuration management
+  - CAD governance
+  - Track testing
+  - Formula Student
+metrics:
+  - "3 years 4 months across design, manufacturing, and competition"
+  - "Redesigned brake system after critical failure"
+  - "Introduced CAD governance + change-style workflow"
+confidentiality: "Public / Internal-safe"
+primaryProfile: "mechanical"
+secondaryProfiles:
+  - "cm"
+---
+
+## TL;DR
+- **3 years and 4 months** in UPM Racing (Formula Student), covering design, manufacturing, testing, and competition.
+- **Mechanical deep dive:** brake system redesign after a critical failure, with CAD, tolerances, and 3‑axis manufacturability.
+- **Configuration/CAD deep dive:** 3DEXPERIENCE coordination, Skeleton methodology, and a change‑style workflow.
+- **Handoff:** practical training and documentation for the next generation.
+
+![Hero (TODO)](/media/case-studies/formula-student/img-01-hero.svg)
+
+## Role & Scope
+**Roles:** Junior (RC car) → Suspension/Dynamics member → CAD/3D Coordinator + “Change/Config” → Handoff & Training  
+**Period:** 09/2020 – 12/2023  
+**Scope:** end‑to‑end engineering, CAD governance, Skeleton methodology, change control, manufacturing/tolerances, competition pressure.
+
+## Profile relevance
+- Primary: Mechanical Engineering (design, manufacturing, validation)
+- Secondary: Configuration Management (CAD governance and change control)
+
+## Context
+UPM Racing competes in **Formula Student**, where teams **design, build, and validate** a race car under strict regulations. The yearly cycle is end‑to‑end: requirements → design → manufacturing → testing → competition.
+
+At competition:
+- Technical inspection and documentation (regulatory compliance).
+- Dynamic tests (brake test, slalom, endurance).
+- Static defenses before judges (design, cost, organization).
+
+Motivation: complement theory with real engineering, teamwork, and delivery pressure.
+
+## Deep dives
+
+### Deep dive — Mechanical Engineer: brake redesign
+[Go to standalone case study: Brake System Redesign →](/projects/formula-brake-redesign)
+
+**Situation:** during technical inspection, a hard press caused a **critical failure** of the brake system.  
+**Objective:** redesign it to be **robust**, adjustable, and manufacturable.
+
+**What I did**
+- CAD design and **interference checks**.
+- Adapted geometry for **3‑axis manufacturing**.
+- Drawings + tolerances (hands‑on with machinist feedback).
+- Selected bushings/friction components.
+- Coordinated chassis mounting constraints.
+
+**Result**
+- Reinforced system that **passed the “hard press”** and later validation.
+- Preserved balance bar and braking performance.
+- Key lesson: **design for manufacturing** and real tolerances.
+
+![Brake assembly (TODO)](/media/case-studies/formula-student/img-06-brake-assembly.svg)
+![CAD + topology (TODO)](/media/case-studies/formula-student/img-07-brake-cad-topology.svg)
+
+### Deep dive — Configuration Manager: CAD governance in 3DEXPERIENCE
+**Problem:** car CAD was “owned by two experts,” fragile dependencies, limited coordination across divisions.
+
+**What I implemented**
+- **Impact analysis** required before CAD changes.
+- **Skeleton guide:** what to reference and how to avoid toxic dependencies.
+- **Division permissions** (collaborative spaces) to work in context safely.
+- **Controlled reviews** + “branch/merge” at subassembly level.
+- Lightweight **Definition of Ready/Done** (impact + review closed).
+- Stable **naming convention** (UPMR) to avoid mass renames.
+
+**Result**
+- More parallel work without breaking the model.
+- Better change traceability and rollback.
+
+![CAD tree 3DX (TODO)](/media/case-studies/formula-student/img-08-cad-structure.svg)
+![Ways of Working (TODO)](/media/case-studies/formula-student/img-09-ways-of-working.svg)
+![Naming policy (TODO)](/media/case-studies/formula-student/img-10-naming-policy.svg)
+
+**Hard lesson: front wing vs chassis interference**
+During assembly, the front wing **interfered** with the nose/chassis due to outdated versions across divisions.
+- **Impact:** rework and weaker design defense.
+- **Change:** cross‑division visibility required before interface changes.
+
+![Interference CAD (TODO)](/media/case-studies/formula-student/img-11-interference.svg)
+
+### Deep dive — Handoff & training
+I designed and delivered practical training (Sep–Dec) for the next generation:
+1. 3DEXPERIENCE basics, roles, permissions.
+2. In‑context work + assemblies.
+3. Release process + reviews.
+4. Skeleton best practices.
+5. Living documentation + improvement roadmap.
+
+**Delivered artifacts**
+- Improved Skeleton guide.
+- 3DX methodology v1 (branches + reviews + permissions).
+- Minimal Impact Analysis template.
+- Naming convention v2.
+- Simplified Change Process.
+
+![Simplified change process (TODO)](/media/case-studies/formula-student/img-12-change-process.svg)
+![Training / handoff (TODO)](/media/case-studies/formula-student/img-13-training-handoff.svg)
+
+## Outcomes & Impact
+- Brake redesign validated in inspection and subsequent tests.
+- Improved CAD governance and fewer conflicts across divisions.
+- Knowledge transfer and structured onboarding for new members.
+- Real competition defenses (Hungary 2022, Czech Republic 2023).
+
+![Hungaroring 2022 (TODO)](/media/case-studies/formula-student/img-02-hungary-2022.svg)
+![Czech Republic 2023 (TODO)](/media/case-studies/formula-student/img-03-czech-2023.svg)
+![Camp logistics (TODO)](/media/case-studies/formula-student/img-14-camp-logistics.svg)
+
+## Learnings
+- **Ownership without title** in low‑process environments.
+- **End‑to‑end engineering:** requirements → design → manufacturing → testing → competition.
+- **CM/Change mindset** applied to CAD and releases.
+- **Design for manufacture** and real tolerances.
+
+**What I’d do differently**
+- Run mock scrutineering earlier.
+- Keep regulations as living checklists per subsystem.
+- Add decision gates with dates to avoid late blocks.
+- Do cross‑division impact analysis before interface changes.
+
+## Media / Evidence
+- Images: hero, brakes, CAD, governance, interferences, training, competition.

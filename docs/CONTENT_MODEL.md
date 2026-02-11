@@ -26,6 +26,7 @@ content/
   contact.json        # contact info
   case-studies/       # long-form project pages (MDX)
     _template.mdx     # case study template + umbrella/deep-dive structure
+    en/               # English case studies (same slugs)
 ```
 
 ## Data access approach
@@ -38,6 +39,13 @@ content/
 - Case studies can cross-link to related projects using the CTA pattern in `docs/CASE_STUDY_TEMPLATE.md`.
 
 This keeps deployments fast, reproducible, and easy to edit.
+
+## Localization
+
+- UI copy lives in `src/lib/i18n.ts` (ES/EN/zh UI labels).
+- Project card translations live in `src/lib/projects-i18n.ts`.
+- Case studies are Spanish by default; EN lives in `content/case-studies/en/` with the same slug.
+- Chinese UI currently falls back to English case studies.
 
 ## Updating content
 

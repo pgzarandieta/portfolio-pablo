@@ -1,0 +1,137 @@
+---
+slug: "airbus-data"
+title: "Airbus data internship: trade-off analytics"
+summary: "Data product for engineering trade-off analysis using A320 HTP/VTP BOMs, Palantir/Skywise pipelines, and a decision-ready dashboard."
+role: "Data / Analytics Intern"
+date: "2023-02 — 2023-08"
+stack:
+  - Palantir / Skywise
+  - PySpark
+  - SQL
+  - Dashboards
+  - BOM analytics
+  - Data quality validation
+tags:
+  - Data analytics
+  - ETL
+  - BOM
+  - Engineering
+metrics:
+  - "BOM comparison surfaced ~10–15 missing instances in a ~1000-item structure"
+  - "Dashboard + pipeline delivered and ready for pilot"
+confidentiality: "Public / Internal-safe"
+primaryProfile: "data"
+secondaryProfiles:
+  - "systems"
+---
+
+## TL;DR
+During my Airbus internship I worked on **data analytics for engineering decision‑making**: estimating change impact (especially **weight reduction**) from **product structures (BOMs)** of the **A320** (HTP/VTP components) filtered by **Manufacturing Serial Number (MSN)** or by **applicability/configuration**. The outcome was a **dashboard** (pilot‑ready) supported by a **pipeline** (PySpark/SQL) to query product structure, count standard parts, and compute **total weight** and **before/after deltas** when substituting standards.
+
+![Decision flow](/media/case-studies/airbus-data/diagram-0-decision-flow.svg)
+
+## Role & Scope
+**Role:** Data / Analytics Intern (internship)  
+**Location:** Getafe (Madrid)  
+**Period:** 02/2023 – 08/2023  
+**Domain:** Engineering/Design (change trade‑offs, weight‑reduction campaigns, applicability/MSN impact)  
+**High‑level stack:** Palantir (Airbus Skywise) — block‑style pipelines + PySpark/SQL + dashboards
+
+## Profile relevance
+- Primary: Data Analyst (ETL + decision‑oriented dashboards)
+- Secondary: Systems Engineering (trade‑offs and impact traceability)
+
+## Context
+In engineering/design, for improvement campaigns (e.g., weight reduction) or maintenance decisions, it’s critical to answer questions quickly:
+- “If I replace this standard with a lighter one, how many instances does it affect by applicability/MSN?”
+- “What total weight does this standard represent within HTP/VTP for a given configuration?”
+- “Where in the structure does it appear and how many times?”
+
+**Project objective:** build a data product (pipeline + dashboard) that enables **trade‑off analysis**:
+1. Filter by **MSN** or **applicability/configuration**.
+2. Extract the **HTP/VTP BOM** and navigate levels.
+3. Count instances of a given **standard part**.
+4. Compute **total weight** and **before/after** comparisons for substitutions.
+
+## Deep dives
+
+### Deep dive — Data sources & model (no sensitive details)
+- Data came from an internal **legacy PLM** (A320 historical).
+- Airbus generated a **database bank** recreated from that legacy system.
+- The project used:
+  - **physical product structures (BOMs)** for HTP/VTP,
+  - parent‑child relationships to navigate assembly → subassembly → part → standard part,
+  - applicability data (MSN/configuration).
+
+**Enrichment: standards catalog**
+- A **standard parts** table provided material, unit weight, and metadata.
+
+![Data lineage](/media/case-studies/airbus-data/diagram-1-data-lineage.svg)
+![BOM drill-down](/media/case-studies/airbus-data/diagram-2-bom-drilldown.svg)
+
+### Deep dive — Pipeline + dashboard
+**Pipeline (transforms / joins)**
+- Block‑style pipelines with **PySpark/SQL** transforms.
+- Filtering by **MSN** or **applicability/configuration**.
+- Reconstruction of the **HTP/VTP product structure**.
+- Aggregations and joins with the standards catalog (weight/material).
+- Publishing datasets ready for the dashboard.
+
+![Pipeline blocks](/media/case-studies/airbus-data/diagram-4-pipeline-blocks.svg)
+
+**Dashboard (user-facing)**
+- Select **MSN** or **applicability/configuration**.
+- View **BOM** with level navigation.
+- Search for **standard parts** by code.
+- Compute counts, total weight, and **before/after** deltas.
+
+![User flow](/media/case-studies/airbus-data/diagram-3-user-flow.svg)
+
+### Deep dive — Collaboration model
+I worked alongside the product owner (roughly 50/50):
+- Reverse‑engineering the legacy data model.
+- Initial pipeline implementation and migration into platform pipelines.
+- Dashboard design (filters, views, metrics focused on real utility).
+- Validation of results and inconsistencies.
+- Internal demos and handoff.
+
+![Collaboration model](/media/case-studies/airbus-data/diagram-7-collaboration-model.svg)
+
+### Deep dive — Validation & “missing data” detection
+**Situation:** reconstructing the **HTP/VTP BOM** from the recreated database.
+
+**Task:** validate that the structure matched the legacy reference.
+
+**Action:**
+- Exported the BOM by MSN from the recreated DB.
+- Exported the equivalent structure from the legacy tool.
+- Diffed both CSVs with a script and produced a **differences report**.
+- Escalated to the DB‑bank owners with repro steps and scripts.
+
+**Result:**
+- Total BOM ~**1000** items.
+- **~10–15** missing instances, concentrated in a specific standard type.
+- Real risk of bias in counts and total weight.
+
+![Validation loop](/media/case-studies/airbus-data/diagram-5-validation-loop.svg)
+
+## Outcomes & Impact
+- Dashboard + pipeline **implemented, tested, and pilot‑ready**.
+- Internal demos and a department presentation.
+- My internship ended before sustained user adoption; the deliverable was handed off to the owner.
+
+![Delivery timeline](/media/case-studies/airbus-data/diagram-6-delivery-timeline.svg)
+
+## Learnings
+- **Engineering data analytics:** impact analysis, applicability counts, and weight calculations.
+- **ETL/pipelines + PySpark/SQL:** joins, filters, aggregations, and production datasets.
+- **Data quality & validation:** compare to legacy sources, provide clear repro.
+- **Data product thinking:** build something usable for real decisions.
+- **Collaboration with owner/mentor:** iterate quickly and deliver with quality.
+
+## Media / Evidence
+- Diagrams: decision flow, data lineage, BOM drill‑down, pipeline, user flow, validation loop.
+- Context links:
+  - https://spark.apache.org/docs/latest/api/python/
+  - https://en.wikipedia.org/wiki/Bill_of_materials
+  - https://www.palantir.com/platforms/foundry/

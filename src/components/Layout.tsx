@@ -1,27 +1,35 @@
 import content from '@/lib/content';
+import { getCopy } from '@/lib/i18n';
+import { getLocale } from '@/lib/locale.server';
+import LanguageToggle from '@/components/LanguageToggle';
 import Link from 'next/link';
 
-const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/resume', label: 'Resume' },
-  { href: '/contact', label: 'Contact' },
-];
+export default async function Layout({ children }: { children: React.ReactNode }) {
+  const locale = await getLocale();
+  const t = getCopy(locale);
+  const navLinks = [
+    { href: '/', label: t.nav.home },
+    { href: '/about', label: t.nav.about },
+    { href: '/projects', label: t.nav.projects },
+    { href: '/resume', label: t.nav.resume },
+    { href: '/contact', label: t.nav.contact },
+  ];
 
-export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div>
       <header className="container">
-        <div className="flex items-center justify-between py-6">
+        <div className="flex flex-wrap items-center justify-between gap-4 py-6">
           <div className="text-xs uppercase tracking-[0.2em]">{content.site.name}</div>
-          <nav className="flex flex-wrap gap-4 text-sm">
-            {navLinks.map((link) => (
-              <Link key={link.href} href={link.href}>
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+          <div className="flex flex-wrap items-center gap-4">
+            <nav className="flex flex-wrap gap-4 text-sm">
+              {navLinks.map((link) => (
+                <Link key={link.href} href={link.href}>
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+            <LanguageToggle currentLocale={locale} />
+          </div>
         </div>
       </header>
       <main>{children}</main>

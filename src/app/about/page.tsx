@@ -1,87 +1,78 @@
 import Layout from '@/components/Layout';
 import content from '@/lib/content';
+import { getCopy } from '@/lib/i18n';
+import { getLocale } from '@/lib/locale.server';
 
-const formatDate = (value: string) => {
+const formatDate = (value: string, locale: string) => {
   if (!value) return '';
-  if (value.toLowerCase() === 'present') return 'Present';
-  if (value.toLowerCase() === 'confirm') return 'Confirm';
+  if (value.toLowerCase() === 'present') {
+    if (locale === 'es') return 'Actual';
+    if (locale === 'zh') return '至今';
+    return 'Present';
+  }
+  if (value.toLowerCase() === 'confirm') {
+    if (locale === 'es') return 'Confirmar';
+    if (locale === 'zh') return '待确认';
+    return 'Confirm';
+  }
 
   const date = new Date(`${value}-01T00:00:00`);
   if (Number.isNaN(date.getTime())) {
     return value;
   }
 
-  return new Intl.DateTimeFormat('en', {
+  return new Intl.DateTimeFormat(locale, {
     month: 'short',
     year: 'numeric',
   }).format(date);
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
   const primaryEducation = content.education[0];
   const focusAreas = content.profiles.slice(0, 4);
+  const locale = await getLocale();
+  const t = getCopy(locale);
   const experienceStories: Record<string, string> = {
     'formula-student':
-      'I started with Formula Student, moving from suspension/dynamics to CAD coordination and later handoff training, learning design-for-manufacture under competition deadlines.',
+      locale === 'es'
+        ? 'Empecé en Formula Student, pasando de suspensión/dinámica a coordinación CAD y luego formación de handoff, aprendiendo diseño para fabricar bajo deadlines de competición.'
+        : 'I started with Formula Student, moving from suspension/dynamics to CAD coordination and later handoff training, learning design-for-manufacture under competition deadlines.',
     'airbus-data-intern':
-      'I shifted into data analytics at Airbus, building BOM trade-off pipelines and dashboards while validating legacy data quality.',
+      locale === 'es'
+        ? 'Luego pasé a analítica de datos en Airbus, construyendo pipelines y dashboards de trade-offs y validando la calidad de datos legacy.'
+        : 'I shifted into data analytics at Airbus, building BOM trade-off pipelines and dashboards while validating legacy data quality.',
     'airbus-consultant':
-      'I then joined Airbus via ALTEN in configuration management, translating change processes into tool requirements, running UAT, and leading training during rollout.',
+      locale === 'es'
+        ? 'Después entré en Airbus vía ALTEN en configuración, traduciendo procesos de cambio a requisitos de herramienta, ejecutando UAT y liderando formación en el rollout.'
+        : 'I then joined Airbus via ALTEN in configuration management, translating change processes into tool requirements, running UAT, and leading training during rollout.',
   };
 
   return (
     <Layout>
       <section className="container section">
         <div className="stack">
-          <h1>About</h1>
-          <p className="text-lg text-[var(--sb-ink)]/80">
-            I&apos;m {content.site.name}, an aerospace engineering student based in{' '}
-            {content.site.location}. I enjoy bridging rigorous engineering with practical tools
-            people actually use, from configuration management in Airbus programs to hands-on
-            systems building and automation.
-          </p>
+          <h1>{t.about.title}</h1>
+          <p className="text-lg text-[var(--sb-ink)]/80">{t.about.intro}</p>
           <p className="text-sm text-[var(--sb-ink)]/70">
-            Current studies: {primaryEducation.program} ({primaryEducation.focus}) at{' '}
-            {primaryEducation.institution}, expected {formatDate(primaryEducation.end)}.
+            {t.about.studiesPrefix}: {primaryEducation.program} ({primaryEducation.focus}) at{' '}
+            {primaryEducation.institution}, expected {formatDate(primaryEducation.end, locale)}.
           </p>
         </div>
       </section>
       <section className="container section">
-        <h2>Beyond the resume</h2>
+        <h2>{t.about.beyondResume}</h2>
         <div className="mt-6 grid gap-6 lg:grid-cols-[0.7fr_2.3fr]">
           <div className="rounded-3xl border border-[var(--sb-ink)]/10 bg-[var(--color-muted)] p-5">
             <div className="flex aspect-[3/4] items-center justify-center rounded-2xl border border-dashed border-[var(--sb-ink)]/30 bg-[var(--color-surface-strong)] text-xs uppercase tracking-[0.2em] text-[var(--sb-ink)]/60">
-              Portrait photo placeholder
+              {t.about.portraitPlaceholder}
             </div>
-            <p className="mt-4 text-xs text-[var(--sb-ink)]/60">
-              Add a portrait photo here when ready.
-            </p>
+            <p className="mt-4 text-xs text-[var(--sb-ink)]/60">{t.about.portraitHint}</p>
           </div>
           <div className="stack">
-            <p className="text-sm text-[var(--sb-ink)]/80">
-              Outside of engineering, I am a high-performance hockey player with national team
-              experience (U18, U20, and senior). Competitive sport has taught me discipline,
-              teamwork, and how to perform under pressure.
-            </p>
-            <p className="text-sm text-[var(--sb-ink)]/80">
-              I also enjoy hands-on building: drones, Arduino/ESP32 projects, and 3D printing. I
-              like learning by doing and turning ideas into working prototypes.
-            </p>
+            <p className="text-sm text-[var(--sb-ink)]/80">{t.about.personal1}</p>
+            <p className="text-sm text-[var(--sb-ink)]/80">{t.about.personal2}</p>
             <div className="grid gap-3 md:grid-cols-3">
-              {[
-                {
-                  title: 'High-performance hockey',
-                  detail: 'Training 3–4 times per week + national team tournaments.',
-                },
-                {
-                  title: 'Maker mindset',
-                  detail: 'CAD, electronics, and rapid prototyping in spare time.',
-                },
-                {
-                  title: 'Curiosity-driven',
-                  detail: 'Learning across systems, data, and automation.',
-                },
-              ].map((item) => (
+              {t.about.cards.map((item) => (
                 <article
                   key={item.title}
                   className="rounded-2xl border border-[var(--sb-ink)]/10 bg-[var(--color-surface)] p-4"
@@ -95,7 +86,7 @@ export default function AboutPage() {
         </div>
       </section>
       <section className="container section">
-        <h2>Focus areas</h2>
+        <h2>{t.about.focusAreas}</h2>
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {focusAreas.map((profile) => (
             <article
@@ -114,12 +105,8 @@ export default function AboutPage() {
         </div>
       </section>
       <section className="container section">
-        <h2>Career path</h2>
-        <p className="mt-2 text-sm text-[var(--sb-ink)]/70">
-          My path moved from hands-on Formula Student engineering to data analytics in Airbus, and
-          then into configuration management and change process ownership during a major platform
-          rollout.
-        </p>
+        <h2>{t.about.careerPath}</h2>
+        <p className="mt-2 text-sm text-[var(--sb-ink)]/70">{t.about.careerIntro}</p>
         <div className="mt-6 grid gap-4">
           {[...content.experience]
             .slice()
@@ -137,7 +124,7 @@ export default function AboutPage() {
                     </p>
                   </div>
                   <div className="text-xs uppercase tracking-[0.2em] text-[var(--sb-ink)]/60">
-                    {formatDate(role.start)} — {formatDate(role.end)}
+                    {formatDate(role.start, locale)} — {formatDate(role.end, locale)}
                   </div>
                 </div>
                 {experienceStories[role.id] && (

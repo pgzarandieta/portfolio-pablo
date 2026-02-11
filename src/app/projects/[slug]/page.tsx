@@ -1,5 +1,7 @@
 import Layout from '@/components/Layout';
 import { getCaseStudies, getCaseStudyBySlug } from '@/lib/case-studies';
+import { getCopy } from '@/lib/i18n';
+import { getLocale } from '@/lib/locale.server';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import React from 'react';
@@ -19,7 +21,9 @@ export const generateStaticParams = async () => {
 
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   const { slug } = await params;
-  const caseStudy = getCaseStudyBySlug(slug);
+  const locale = await getLocale();
+  const caseStudy = getCaseStudyBySlug(slug, locale);
+  const t = getCopy(locale);
 
   if (!caseStudy) {
     notFound();
@@ -33,7 +37,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             href="/projects"
             className="text-xs uppercase tracking-[0.2em] text-[var(--sb-ink)]/60"
           >
-            ← Back to projects
+            {t.projects.back}
           </Link>
           <h1>{caseStudy.title}</h1>
           {caseStudy.summary && (
@@ -84,7 +88,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
           <aside className="stack">
             {caseStudy.stack && caseStudy.stack.length > 0 && (
               <div className="rounded-2xl border border-[var(--sb-ink)]/10 bg-[var(--color-muted)] p-5">
-                <h2 className="text-base">Stack</h2>
+                <h2 className="text-base">{t.projects.stack}</h2>
                 <ul className="mt-3 list-disc space-y-2 pl-4 text-sm text-[var(--sb-ink)]/70">
                   {caseStudy.stack.map((item) => (
                     <li key={item}>{item}</li>
@@ -94,7 +98,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             )}
             {caseStudy.metrics && caseStudy.metrics.length > 0 && (
               <div className="rounded-2xl border border-[var(--sb-ink)]/10 bg-[var(--color-surface)] p-5">
-                <h2 className="text-base">Impact</h2>
+                <h2 className="text-base">{t.projects.impact}</h2>
                 <ul className="mt-3 list-disc space-y-2 pl-4 text-sm text-[var(--sb-ink)]/70">
                   {caseStudy.metrics.map((item) => (
                     <li key={item}>{item}</li>
@@ -104,7 +108,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
             )}
             {caseStudy.tags && caseStudy.tags.length > 0 && (
               <div className="rounded-2xl border border-[var(--sb-ink)]/10 bg-[var(--color-muted)] p-5">
-                <h2 className="text-base">Tags</h2>
+                <h2 className="text-base">{t.projects.tags}</h2>
                 <div className="mt-3 flex flex-wrap gap-2 text-xs uppercase tracking-[0.2em] text-[var(--sb-ink)]/60">
                   {caseStudy.tags.map((tag) => (
                     <span key={tag}>{tag}</span>

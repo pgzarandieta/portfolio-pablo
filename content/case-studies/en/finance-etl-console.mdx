@@ -1,0 +1,70 @@
+---
+slug: "finance-etl-console"
+title: "Finance ETL Console"
+summary: "Automated bank imports into Firefly III with dedupe, OIDC, and per‑bank parsers."
+role: "Builder / Maintainer"
+date: "2024–present"
+stack:
+  - FastAPI
+  - HTMX
+  - Firefly III API
+  - Authentik (OIDC)
+  - Podman
+  - PostgreSQL (via Firefly)
+tags:
+  - ETL
+  - Finance
+  - Data quality
+  - Automation
+metrics:
+  - "Multiple CSV/PDF parsers with dedupe"
+  - "OIDC‑secured workflow for personal finance"
+confidentiality: "Public / Internal-safe"
+primaryProfile: "data"
+secondaryProfiles:
+  - "devops"
+---
+
+## TL;DR
+I built a web app to **automate bank imports** into Firefly III, with **per‑bank parsers**, local + API deduplication, and **OIDC authentication**. The goal is to reduce manual effort and improve data quality in personal finance.
+
+## Role & Scope
+**Role:** Builder / Maintainer  
+**Period:** 2024–present  
+**Scope:** ETL pipeline design, parsers, import UX, OIDC security, and service operation.
+
+## Profile relevance
+- Primary: Data Analyst (ETL + data validation)
+- Secondary: DevOps / Platform (deploy, OIDC, operations)
+
+## Context
+Importing transactions into Firefly III was manual and error‑prone (heterogeneous CSV/PDF formats, inconsistent fields, duplicates). I needed a repeatable, secure flow with data‑quality controls.
+
+## Deep dives
+
+### Deep dive — Parsing + normalization
+- Bank‑specific CSV/PDF parsers mapped into a common schema.
+- Normalization of dates, amounts, categories, and descriptions.
+- Basic validation before upload.
+
+### Deep dive — Dedupe (local + API)
+- Local dedupe to prevent accidental re‑imports.
+- Dedupe against the Firefly III API to avoid historical duplicates.
+
+### Deep dive — OIDC + secure workflow
+- OIDC with Authentik for unified authentication.
+- Controlled, traceable access by user.
+
+## Outcomes & Impact
+- Faster, consistent imports.
+- Fewer manual errors and higher data quality.
+- Strong base for future finance automations.
+
+## Learnings
+- Data quality depends on **normalization + validation** before import.
+- OIDC reduces friction and improves security in personal apps.
+- Workflows must be **observable + reversible** to build trust.
+
+## Media / Evidence
+- ETL pipeline diagram (TODO)
+- Import UI screenshots (TODO)

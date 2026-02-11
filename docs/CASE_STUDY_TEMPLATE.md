@@ -45,3 +45,8 @@ If you are cross-referencing a **related** umbrella project, use:
 ## Example file
 
 See `content/case-studies/_template.mdx`.
+
+## Localization
+
+- Spanish case studies live in `content/case-studies/`.
+- English case studies live in `content/case-studies/en/` with the same `slug`.

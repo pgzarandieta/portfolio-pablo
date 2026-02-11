@@ -20,140 +20,118 @@ metrics:
   - "BOM comparison surfaced ~10–15 missing instances in a ~1000-item structure"
   - "Dashboard + pipeline delivered and ready for pilot"
 confidentiality: "Public / Internal-safe"
+primaryProfile: "data"
+secondaryProfiles:
+  - "systems"
 ---
 
+## TL;DR
+Durante mis prácticas en Airbus trabajé en un caso de **data analytics orientado a la toma de decisiones de ingeniería**: estimar impacto de cambios (especialmente **reducción de peso**) a partir de **estructuras de producto (BOM)** del **A320** (componentes del **HTP/VTP**) filtradas por **Manufacturing Serial Number (MSN)** o por **aplicabilidad/configuración**. El resultado fue un **dashboard** (listo para pilotaje) apoyado por un **pipeline** (PySpark/SQL) que permitía consultar estructura de producto, contar instancias de estándares y calcular **peso total** y **delta de peso** en escenarios “antes/después”.
+
+![Decision flow](/media/case-studies/airbus-data/diagram-0-decision-flow.svg)
+
+## Role & Scope
 **Rol:** Data / Analytics Intern (internship)  
 **Ubicación:** Getafe (Madrid)  
 **Periodo:** 02/2023 – 08/2023  
 **Dominio:** Ingeniería / Diseño (trade-offs de cambios, campañas de reducción de peso, impacto por aplicabilidad/MSN)  
 **Stack (alto nivel):** Palantir (Airbus Skywise) — pipelines tipo “bloques” + PySpark/SQL + dashboards
 
-> **TL;DR**  
-> Durante mis prácticas en Airbus trabajé en un caso de **data analytics orientado a la toma de decisiones de ingeniería**: estimar impacto de cambios (especialmente **reducción de peso**) a partir de **estructuras de producto (BOM)** del **A320** (componentes del **HTP/VTP**) filtradas por **Manufacturing Serial Number (MSN)** o por **aplicabilidad/configuración**.  
-> El resultado fue un **dashboard** (listo para pilotaje) apoyado por un **pipeline** (PySpark/SQL) que permitía consultar estructura de producto, contar instancias de estándares y calcular **peso total** y **delta de peso** en escenarios “antes/después” al sustituir estándares (tornillos/tuercas/etc.).
+## Profile relevance
+- Primary: Data Analyst (ETL + dashboards orientados a decisiones)
+- Secondary: Systems Engineering (trade-offs y trazabilidad de impacto)
 
----
-
-## 1) Contexto y objetivo
-### Problema
+## Context
 En ingeniería/diseño, para campañas de mejora (p.ej. reducción de peso) o decisiones de mantenimiento/reparación, es clave responder rápido a preguntas como:
 - “Si sustituyo este estándar por otro más ligero, ¿cuántas instancias afecta según la aplicabilidad/MSN?”
 - “¿Qué peso total representa este estándar dentro del HTP/VTP en una configuración concreta?”
 - “¿En qué subassembly aparece y cuántas veces?”
 
-### Objetivo del proyecto
-Construir un producto de datos (pipeline + dashboard) que habilitase **trade-off analysis**:
-1) Filtrar por **MSN** (avión concreto) o por **configuración/aplicabilidad** (rango de MSNs que comparten una configuración).
-2) Extraer la **BOM** del HTP/VTP y navegar por niveles (subassemblies → parts → standard parts).
-3) Contar instancias de un **standard part** específico (por código).
-4) Calcular **peso total** y **comparativas antes/después** ante sustituciones (standard A → standard B).
+**Objetivo del proyecto:** construir un producto de datos (pipeline + dashboard) que habilitase **trade-off analysis**:
+1. Filtrar por **MSN** o por **configuración/aplicabilidad**.
+2. Extraer la **BOM** del HTP/VTP y navegar por niveles.
+3. Contar instancias de un **standard part** específico.
+4. Calcular **peso total** y comparativas **antes/después** ante sustituciones.
 
-![Decision flow](/media/case-studies/airbus-data/diagram-0-decision-flow.svg)
+## Deep dives
 
----
-
-## 2) Datos: fuentes y modelo (sin detalles sensibles)
-### Fuente principal (legacy PLM → banco de BBDD)
+### Deep dive — Data sources & model (sin detalles sensibles)
 - Los datos provenían de un **PLM legacy** interno (histórico del A320).
-- Airbus había generado un **banco de bases de datos** con información extraída/recreada a partir de ese sistema legacy.
+- Airbus había generado un **banco de bases de datos** con información extraída/recreada a partir de ese sistema.
 - El proyecto usaba:
   - **estructuras de producto físicas (BOM)** del HTP/VTP,
   - relaciones padre-hijo para navegar assembly → subassembly → part → standard part,
   - información de aplicabilidad (MSN/configuración).
 
-### Enriquecimiento: catálogo de estándares
-- Se integraba con una tabla/catálogo de **standard parts** (por código) para obtener datos como:
-  - material,
-  - peso unitario (y otros metadatos útiles para trade-offs).
+**Enriquecimiento: catálogo de estándares**
+- Tabla/catálogo de **standard parts** para obtener material, peso unitario y metadatos.
 
 ![Data lineage](/media/case-studies/airbus-data/diagram-1-data-lineage.svg)
-
 ![BOM drill-down](/media/case-studies/airbus-data/diagram-2-bom-drilldown.svg)
 
----
-
-## 3) Solución: pipeline + dashboard
-### Pipeline (transformaciones / joins)
-- Implementación mediante una herramienta de pipelines estilo “bloques” (inputs/outputs), con transformaciones en **PySpark/SQL**.
-- El pipeline:
-  - filtraba por **MSN** o por **aplicabilidad/configuración**,
-  - reconstruía la **estructura de producto** del HTP/VTP,
-  - permitía agregaciones (conteos) y joins con catálogo de estándares (peso/material),
-  - publicaba tablas/datasets listos para consumo del dashboard.
+### Deep dive — Pipeline + dashboard
+**Pipeline (transformaciones / joins)**
+- Pipelines estilo “bloques” con transformaciones en **PySpark/SQL**.
+- Filtrado por **MSN** o por **aplicabilidad/configuración**.
+- Reconstrucción de la **estructura de producto** del HTP/VTP.
+- Agregaciones y joins con catálogo de estándares (peso/material).
+- Publicación de datasets listos para el dashboard.
 
 ![Pipeline blocks](/media/case-studies/airbus-data/diagram-4-pipeline-blocks.svg)
 
-### Dashboard (cara a usuario)
-El dashboard (en el entorno de **Palantir / Skywise**) permitía:
-- seleccionar **MSN** o **configuración/aplicabilidad**,
-- visualizar la **BOM** del HTP/VTP (con navegación por niveles),
-- buscar un **standard part** por código,
-- ver:
-  - número de instancias (conteo),
-  - peso total asociado (instancias × peso unitario),
-  - localización en la estructura (en qué subassembly aparece),
-  - (cuando aplicaba) comparativa **antes/después** al sustituir A → B, mostrando **delta de peso**.
+**Dashboard (cara a usuario)**
+- Selección de **MSN** o **configuración/aplicabilidad**.
+- Visualización de **BOM** con navegación por niveles.
+- Búsqueda de **standard parts** por código.
+- Cálculo de conteos, peso total y comparativa **antes/después**.
 
 ![User flow](/media/case-studies/airbus-data/diagram-3-user-flow.svg)
 
----
-
-## 4) Mi contribución (trabajo real, sin inflar)
-Trabajé en tándem con el responsable/owner del producto (modelo de colaboración 50/50 aprox.):
-
-- **Reverse-engineering del modelo de datos legacy:** exploración y comprensión de tablas/relaciones y cómo reconstruir la BOM del HTP/VTP.
-- **Implementación inicial de pipelines:** prototipos primero en local y luego migración a pipelines “de plataforma”; el owner revisaba, corregía y remataba con estándar de equipo.
-- **Diseño del dashboard:** empuje fuerte en la definición de filtros, vistas y métricas que maximizaban utilidad para ingeniería.
-- **Validación de resultados:** comparativas entre fuente legacy y base recreada; detección de inconsistencias/missing data.
-- **Handoff y demos:** demos internas y presentación al departamento; entrega lista para fase de pilotaje con usuarios finales.
+### Deep dive — Collaboration model
+Trabajé en tándem con el responsable/owner del producto (colaboración 50/50 aprox.):
+- Reverse-engineering del modelo de datos legacy.
+- Implementación inicial de pipelines y migración a pipelines “de plataforma”.
+- Diseño del dashboard (filtros, vistas y métricas con foco en utilidad real).
+- Validación de resultados e inconsistencias.
+- Demos internas y handoff.
 
 ![Collaboration model](/media/case-studies/airbus-data/diagram-7-collaboration-model.svg)
 
----
+### Deep dive — Validación y detección de “missing data”
+**Situation:** reconstrucción de la **BOM del HTP/VTP** desde la base “recreada”.
 
-## 5) Deep dive (STAR) — Validación y detección de “missing data”
-### S — Situation
-Estábamos filtrando por **MSN** y reconstruyendo la **BOM del HTP/VTP** desde la base “recreada” para alimentar el dashboard y soportar cálculos de peso y conteos.
+**Task:** validar que la estructura coincidía con la referencia legacy.
 
-### T — Task
-Validar que la estructura generada por la base recreada coincidía con la referencia legacy, para evitar que el análisis de trade-offs se basara en datos incompletos.
+**Action:**
+- Extraje la BOM filtrada por un MSN desde la base recreada.
+- Exporté la estructura equivalente desde la herramienta legacy.
+- Crucé ambos CSV con un script y generé un **informe de diferencias**.
+- Escalé al equipo dueño del DB bank con informe + scripts reproducibles.
 
-### A — Action
-- Extraje la BOM del HTP/VTP filtrada por un MSN desde la base recreada.
-- Consulté la herramienta legacy (fuente original) y exporté la estructura equivalente a CSV.
-- Crucé ambos CSV con un script y generé un **informe de diferencias** (faltantes por tipo/código y cantidad).
-- Escalé al equipo dueño del DB bank con informe + scripts para **reproducir** el caso.
-
-### R — Result
-Detectamos una discrepancia pequeña en volumen pero crítica para trade-offs:
-- BOM total ~**1000** ítems (componentes + estándares),
-- faltaban **~10–15** instancias, concentradas en un tipo de estándar (p.ej. un tornillo concreto),
-- suficiente para sesgar **conteos** y **peso total** y, por tanto, decisiones de ingeniería.
+**Result:**
+- BOM total ~**1000** ítems.
+- Faltaban **~10–15** instancias, concentradas en un tipo de estándar.
+- Riesgo real de sesgo en conteos y peso total.
 
 ![Validation loop](/media/case-studies/airbus-data/diagram-5-validation-loop.svg)
 
----
-
-## 6) Outcome (honesto)
-- El dashboard + pipeline quedó **implementado, testeado y listo para pilotaje**.
-- Se hicieron **demos internas** y una **presentación al departamento** para mostrar el flujo de uso.
-- Mi etapa terminó antes de la fase donde usuarios finales operasen la herramienta de forma sostenida y devolviesen feedback; el entregable quedó preparado para esa fase y transferido al owner.
+## Outcomes & Impact
+- Dashboard + pipeline **implementados, testeados y listos para pilotaje**.
+- Demos internas y presentación al departamento.
+- Mi etapa terminó antes de la fase de uso sostenido por usuarios finales; el entregable quedó transferido al owner.
 
 ![Delivery timeline](/media/case-studies/airbus-data/diagram-6-delivery-timeline.svg)
 
----
-
-## 7) Skills y “por qué esto es relevante” (para CV/entrevista)
+## Learnings
 - **Data analytics aplicado a ingeniería:** impacto de cambios, conteos por aplicabilidad y cálculo de peso.
-- **ETL/pipelines + PySpark/SQL:** joins, filtros, agregaciones y publicación de datasets listos para consumo.
+- **ETL/pipelines + PySpark/SQL:** joins, filtros, agregaciones y datasets listos para consumo.
 - **Data quality & validation:** comparación contra fuente legacy, repro cases, informes claros.
 - **Data product thinking:** construir algo usable (dashboard) con foco en el usuario y la decisión.
 - **Colaboración con owner/mentor:** iteración rápida + revisión/estandarización para entregar con calidad.
-- **Palantir (Skywise):** experiencia construyendo un producto de datos end-to-end (pipelines + dashboards) sobre un entorno de data platform de nivel enterprise.
 
----
-
-## 8) Links públicos (opcionales, solo contexto)
-- (Referencia general) PySpark: https://spark.apache.org/docs/latest/api/python/
-- (Referencia general) Concepto “Bill of Materials (BOM)” en ingeniería: https://en.wikipedia.org/wiki/Bill_of_materials
-- (Referencia general) Palantir Foundry: https://www.palantir.com/platforms/foundry/
+## Media / Evidence
+- Diagramas: decision flow, data lineage, BOM drill-down, pipeline, user flow, validation loop.
+- Links de contexto:
+  - https://spark.apache.org/docs/latest/api/python/
+  - https://en.wikipedia.org/wiki/Bill_of_materials
+  - https://www.palantir.com/platforms/foundry/

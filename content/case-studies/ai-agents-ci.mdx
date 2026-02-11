@@ -20,22 +20,31 @@ metrics:
   - "Issue → plan → exec → PR → review workflow in production"
   - "Two-bot model (implementer + reviewer)"
 confidentiality: "Public / Internal-safe"
+primaryProfile: "devops"
+secondaryProfiles:
+  - "cm"
 ---
 
-## Executive summary
+## TL;DR
 Implementé un flujo **issue → plan → exec → PR → review → patch** usando bots en Forgejo, con runners dedicados y control humano final. El objetivo es acelerar tareas repetitivas sin perder trazabilidad ni calidad: todo pasa por issues, PRs y revisiones, con guardrails y límites de iteración.
 
 ![Agent workflow overview](/media/case-studies/ai-agents-ci/diagram-0-overview.svg)
 
----
+## Role & Scope
+**Rol:** DevOps / Platform (owner)  
+**Periodo:** 2024–present  
+**Scope:** diseño del workflow, separación de runners por permisos, guardrails, operación y mejora continua.
 
-## Contexto
+## Profile relevance
+- Primary: DevOps / Platform (CI/CD automation, platform ops)
+- Secondary: Configuration Management (process discipline y control de cambios)
+
+## Context
 Quería un flujo de desarrollo donde la IA **no sea magia**, sino una herramienta dentro del proceso: planificación clara, implementación controlada y revisión antes de merge. Forgejo ofrecía la base perfecta (issues + PRs + workflows), así que integré agentes LLM como participantes del proceso.
 
----
+## Deep dives
 
-## Deep dive — DevOps / Platform
-### 1) Arquitectura del sistema
+### Deep dive — Workflow architecture (Forgejo + runners)
 - **Forgejo** como hub (issues, PRs, reviews).
 - **Runners** dedicados:
   - Bot implementador: permisos más amplios para build/run.
@@ -44,7 +53,7 @@ Quería un flujo de desarrollo donde la IA **no sea magia**, sino una herramient
 
 ![Architecture](/media/case-studies/ai-agents-ci/diagram-1-architecture.svg)
 
-### 2) Comandos y flujo
+### Deep dive — Command flow (plan → exec → review → patch)
 - `run/plan` → produce plan, riesgos y preguntas.
 - `run/exec` → implementa en branch, abre PR.
 - `run/review` → revisión automática.
@@ -52,7 +61,7 @@ Quería un flujo de desarrollo donde la IA **no sea magia**, sino una herramient
 
 ![Workflow steps](/media/case-studies/ai-agents-ci/diagram-2-workflow.svg)
 
-### 3) Guardrails y control humano
+### Deep dive — Guardrails + control humano
 - **Spec-first:** issues con objetivos claros.
 - **PR review obligatorio** (humano o bot revisor).
 - **Límite de iteraciones** y coste (aún en mejora).
@@ -60,40 +69,27 @@ Quería un flujo de desarrollo donde la IA **no sea magia**, sino una herramient
 
 ![Guardrails](/media/case-studies/ai-agents-ci/diagram-3-guardrails.svg)
 
----
-
-## Honest disclaimer (AI-assisted development)
-Este proyecto es **AI-assisted**. Mi valor está en **diseñar, especificar, integrar y operar** el sistema. Uso IA como acelerador, pero:
+**AI-assisted disclaimer (honesto):**
 - Yo defino objetivos, constraints y criterios de aceptación.
 - La IA implementa a partir de specs.
 - Yo valido end-to-end y reviso componentes críticos.
 - Todo pasa por PRs, revisión y rollback si hace falta.
 
----
-
-## Resultados y límites (honesto)
+## Outcomes & Impact
 - El flujo funciona y se usa para tareas reales.
-- Reduce tiempo en cambios repetitivos.
+- Reduce tiempo en cambios repetitivos con trazabilidad completa.
 - **Limitación actual:** bug en el contador de iteraciones puede generar loops y coste inesperado (ya identificado).
+- **Próximos pasos:** guardrails de coste más estrictos, hardening de runners, evidencias visuales anonimizadas (issues/PRs).
 
 ![Cost loop](/media/case-studies/ai-agents-ci/diagram-4-cost-loop.svg)
-
----
-
-## Qué falta para “venderlo” más fuerte
-- Guardrails de coste más estrictos.
-- Mejor hardening de runners.
-- Evidencias visuales: capturas de issues/PRs reales (anonimizadas).
-
----
 
 ## Learnings
 - El mejor lugar para IA es **dentro del workflow humano** (issues + PRs).
 - Sin guardrails, la IA puede consumir presupuesto rápidamente.
 - Separar runners por permisos reduce riesgos.
 
----
-
-## Links públicos (opcional)
-- https://forgejo.org/
-- https://openai.com/
+## Media / Evidence
+- Diagramas: overview, arquitectura, pasos del workflow, guardrails, coste.
+- Links de contexto:
+  - https://forgejo.org/
+  - https://openai.com/

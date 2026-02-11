@@ -2,6 +2,7 @@ import Layout from '@/components/Layout';
 import { getCaseStudies, getCaseStudyBySlug } from '@/lib/case-studies';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import React from 'react';
 import ReactMarkdown from 'react-markdown';
 
 type CaseStudyPageProps = {
@@ -49,7 +50,35 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         <div className="grid gap-8 lg:grid-cols-[2fr_1fr]">
           <article className="rounded-2xl border border-[var(--sb-ink)]/10 bg-white/80 p-6">
             <div className="prose max-w-none text-[var(--sb-ink)]/80">
-              <ReactMarkdown>{caseStudy.content}</ReactMarkdown>
+              <ReactMarkdown
+                components={{
+                  a: ({ href, children, ...props }) => {
+                    const text = React.Children.toArray(children).join('');
+                    const isProjectLink = href?.startsWith('/projects/');
+                    const isCta = isProjectLink && text.toLowerCase().startsWith('go to');
+
+                    if (isCta) {
+                      return (
+                        <a
+                          {...props}
+                          href={href}
+                          className="inline-flex items-center rounded-full border border-[var(--sb-ink)]/30 bg-[var(--color-muted)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--sb-ink)]/80 transition hover:border-[var(--sb-ink)]"
+                        >
+                          {children}
+                        </a>
+                      );
+                    }
+
+                    return (
+                      <a {...props} href={href}>
+                        {children}
+                      </a>
+                    );
+                  },
+                }}
+              >
+                {caseStudy.content}
+              </ReactMarkdown>
             </div>
           </article>
           <aside className="stack">

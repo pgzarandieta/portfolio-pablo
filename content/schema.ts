@@ -26,6 +26,7 @@ export type Project = {
   summary: string;
   tags: string[];
   highlights: string[];
+  profiles?: string[];
   caseStudySlug?: string;
 };
 

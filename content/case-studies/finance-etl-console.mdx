@@ -1,0 +1,70 @@
+---
+slug: "finance-etl-console"
+title: "Finance ETL Console"
+summary: "Automated bank imports into Firefly III with dedupe, OIDC, and per-bank parsers."
+role: "Builder / Maintainer"
+date: "2024–present"
+stack:
+  - FastAPI
+  - HTMX
+  - Firefly III API
+  - Authentik (OIDC)
+  - Podman
+  - PostgreSQL (via Firefly)
+tags:
+  - ETL
+  - Finance
+  - Data quality
+  - Automation
+metrics:
+  - "Multiple CSV/PDF parsers with dedupe"
+  - "OIDC-secured workflow for personal finance"
+confidentiality: "Public / Internal-safe"
+primaryProfile: "data"
+secondaryProfiles:
+  - "devops"
+---
+
+## TL;DR
+Construí una app web para **automatizar importaciones bancarias** en Firefly III, con **parsers por banco**, deduplicación local y contra API, y **autenticación OIDC**. El objetivo es reducir trabajo manual y asegurar calidad de datos en finanzas personales.
+
+## Role & Scope
+**Rol:** Builder / Maintainer  
+**Periodo:** 2024–present  
+**Scope:** diseño de pipeline ETL, parsers, UX de importación, seguridad OIDC y operación del servicio.
+
+## Profile relevance
+- Primary: Data Analyst (ETL + validación de datos)
+- Secondary: DevOps / Platform (deploy, OIDC, operación)
+
+## Context
+Importar movimientos bancarios en Firefly III era manual y propenso a errores (CSV/PDF heterogéneos, formatos inconsistentes, duplicados). Se necesitaba un flujo repetible, seguro y con control de calidad.
+
+## Deep dives
+
+### Deep dive — Parsing + normalization
+- Parsers por banco (CSV/PDF) con mapeo a un esquema común.
+- Normalización de fechas, importes, categorías y descripciones.
+- Validaciones básicas antes de subir al sistema financiero.
+
+### Deep dive — Dedupe (local + API)
+- Dedupe local para evitar re-importes accidentales.
+- Dedupe contra Firefly III API para evitar duplicados históricos.
+
+### Deep dive — OIDC + workflow seguro
+- OIDC con Authentik para autenticación unificada.
+- Acceso controlado y trazable por usuario.
+
+## Outcomes & Impact
+- Importaciones más rápidas y consistentes.
+- Menos errores manuales y mayor calidad de datos.
+- Base sólida para futuras automatizaciones financieras.
+
+## Learnings
+- La calidad de datos depende de **normalización + validación** antes del import.
+- OIDC reduce fricción y mejora seguridad en apps personales.
+- El flujo debe ser **observables + reversible** para confianza.
+
+## Media / Evidence
+- Diagrama de pipeline ETL (TODO)
+- Capturas de interfaz de importación (TODO)

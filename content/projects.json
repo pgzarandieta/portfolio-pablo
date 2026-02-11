@@ -5,7 +5,17 @@
     "summary": "Customer-side requirements, UAT, and training for CM tooling.",
     "tags": ["CM", "UAT", "3DEXPERIENCE"],
     "highlights": ["MVP1 deployed", "Trained ~175 users"],
-    "caseStudySlug": "one-platform"
+    "caseStudySlug": "one-platform",
+    "profiles": ["systems", "cm"]
+  },
+  {
+    "id": "eurodrone-cm",
+    "title": "Eurodrone Configuration Management",
+    "summary": "Program CM support, change readiness, and documentation traceability.",
+    "tags": ["CM", "Change Control", "Traceability"],
+    "highlights": ["Program CM support", "Change process readiness"],
+    "caseStudySlug": "eurodrone-cm",
+    "profiles": ["cm", "systems"]
   },
   {
     "id": "homelab-platform",
@@ -13,7 +23,8 @@
     "summary": "SSO + Forgejo + CI automation on a home server.",
     "tags": ["DevOps", "Containers", "SSO"],
     "highlights": ["Podman stacks", "Agent workflows"],
-    "caseStudySlug": "homelab-platform"
+    "caseStudySlug": "homelab-platform",
+    "profiles": ["devops"]
   },
   {
     "id": "ai-agents-ci",
@@ -21,7 +32,17 @@
     "summary": "Issue-to-PR automation with review bots and workflows.",
     "tags": ["Automation", "CI/CD", "Agents"],
     "highlights": ["Issue to PR flow", "Auto-review"],
-    "caseStudySlug": "ai-agents-ci"
+    "caseStudySlug": "ai-agents-ci",
+    "profiles": ["devops"]
+  },
+  {
+    "id": "finance-etl-console",
+    "title": "Finance ETL Console",
+    "summary": "Automated bank imports into Firefly III with dedupe and OIDC.",
+    "tags": ["ETL", "Finance", "FastAPI"],
+    "highlights": ["OIDC-secured app", "CSV/PDF parsers"],
+    "caseStudySlug": "finance-etl-console",
+    "profiles": ["data", "devops"]
   },
   {
     "id": "airbus-data",
@@ -29,7 +50,8 @@
     "summary": "BOM/product structure analytics with ETL pipelines.",
     "tags": ["ETL", "Dashboards", "Skywise"],
     "highlights": ["Product structure dashboard", "ETL pipeline"],
-    "caseStudySlug": "airbus-data"
+    "caseStudySlug": "airbus-data",
+    "profiles": ["data"]
   },
   {
     "id": "formula-student",
@@ -37,7 +59,17 @@
     "summary": "CAD coordination, configuration control, and competition defense.",
     "tags": ["CAD", "Configuration", "Motorsport"],
     "highlights": ["Vehicle CAD coordination", "Design and cost defenses"],
-    "caseStudySlug": "formula-student"
+    "caseStudySlug": "formula-student",
+    "profiles": ["mechanical"]
+  },
+  {
+    "id": "formula-brake-redesign",
+    "title": "Formula Student — Brake Redesign",
+    "summary": "Critical brake system redesign for manufacturability and reliability.",
+    "tags": ["Brakes", "CAD", "Manufacturing"],
+    "highlights": ["Failure-driven redesign", "3-axis manufacturability"],
+    "caseStudySlug": "formula-brake-redesign",
+    "profiles": ["mechanical"]
   },
   {
     "id": "iot-home",
@@ -45,6 +77,7 @@
     "summary": "Home Assistant, ESPHome, and solar inverter monitoring.",
     "tags": ["IoT", "Home Assistant", "ESP32"],
     "highlights": ["Self-hosted HA", "Device integrations"],
-    "caseStudySlug": "iot-home"
+    "caseStudySlug": "iot-home",
+    "profiles": ["devops", "data"]
   }
 ]

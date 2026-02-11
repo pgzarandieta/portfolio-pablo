@@ -18,42 +18,48 @@ metrics:
   - "Self-hosted HA with device integrations"
   - "Planned garage control with ESP32"
 confidentiality: "Public / Internal-safe"
+primaryProfile: "devops"
+secondaryProfiles:
+  - "data"
 ---
 
-# Home automation + IoT
+## TL;DR
+Monté un entorno de **Home Assistant** con dispositivos **ESPHome/ESP32** y monitorización de inversor solar para tener control local, métricas y automatizaciones sin depender de nubes propietarias.
+
+## Role & Scope
+**Rol:** Owner / Builder  
+**Periodo:** 2024–present  
+**Scope:** despliegue de HA, integraciones de dispositivos, dashboards, automatizaciones básicas y roadmap de mejoras.
+
+## Profile relevance
+- Primary: DevOps / Platform (self-hosting y operación de servicios)
+- Secondary: Data (monitorización y métricas energéticas)
 
 ## Context
+Buscaba control local fiable y visibilidad sobre dispositivos y consumo energético, evitando dependencias fuertes de servicios cloud y priorizando privacidad.
 
-I wanted reliable local control and visibility over home devices and energy
-usage without relying on cloud-only services.
+## Deep dives
 
-## My Role
+### Deep dive — Core setup (Home Assistant + ESPHome)
+- Despliegue de Home Assistant.
+- Integración de dispositivos con ESPHome.
+- Dashboards para visibilidad de estado y métricas básicas.
 
-- Deployed Home Assistant with ESPHome integrations
-- Integrated a solar inverter for metrics and dashboards
-- Planned an ESP32 garage control automation
+### Deep dive — Solar inverter monitoring
+- Integración comunitaria con el inversor solar para métricas de energía.
+- Visualización centralizada para decisiones rápidas (consumo, generación, picos).
 
-## Stack
+### Deep dive — Garage control (roadmap)
+- Plan de control de puerta de garaje con ESP32.
+- Automatización simple y verificable antes de escalar reglas complejas.
 
-- Home Assistant
-- ESPHome + ESP32
-- Local networking with secure remote access
-
-## Decisions & Tradeoffs
-
-- Prefer local control and privacy over vendor cloud apps
-- Use simple, testable automations before scaling
-
-## Outcome & Impact
-
-- Centralized dashboard for device and energy monitoring
-- Clear roadmap for future automations
+## Outcomes & Impact
+- Dashboard centralizado de dispositivos y energía.
+- Base estable para automatizaciones futuras.
 
 ## Learnings
+- La fiabilidad mejora cuando las automatizaciones son simples y observables.
+- Empezar pequeño permite validar integraciones antes de escalar.
 
-- Device reliability improves when automations are simple and observable
-- Start small, then build on proven integrations
-
-## Media (optional)
-
-- Placeholder for dashboard screenshot
+## Media / Evidence
+- Placeholder para capturas de dashboard y dispositivos.

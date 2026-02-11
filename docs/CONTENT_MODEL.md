@@ -20,12 +20,12 @@ content/
   site.json           # global site info (name, tagline, links)
   profiles.json       # role profiles (Systems, DevOps, etc.)
   experience.json     # professional experience
-  projects.json       # project metadata + ordering
+  projects.json       # project metadata + ordering + profile tags
   skills.json         # skills inventory
   education.json      # education + courses
   contact.json        # contact info
-  case-studies/       # optional long-form project pages (MDX)
-    _template.mdx     # case study template
+  case-studies/       # long-form project pages (MDX)
+    _template.mdx     # case study template + umbrella/deep-dive structure
 ```
 
 ## Data access approach
@@ -33,7 +33,9 @@ content/
 - Content is **statically imported** at build time (no runtime database).
 - The app will read JSON files directly from `content/`.
 - Case studies (if used) will be loaded from `content/case-studies/`.
+- Projects can include `profiles` to support profile-based filtering.
 - Type definitions live in `content/schema.ts`.
+- Case studies can cross-link to related projects using the CTA pattern in `docs/CASE_STUDY_TEMPLATE.md`.
 
 This keeps deployments fast, reproducible, and easy to edit.
 

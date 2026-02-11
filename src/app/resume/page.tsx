@@ -21,16 +21,20 @@ const formatDate = (value: string) => {
 export default function ResumePage() {
   const resumeDownloads = [
     {
-      label: 'Systems / Configuration Management',
-      file: '/resume/cv-systems.pdf',
+      label: 'CM / Systems (ES, ATS)',
+      file: '/resume/Pablo_Garcia-Zarandieta_CV_CM-Systems_ES_ATS.pdf',
     },
     {
-      label: 'Mechanical Design',
-      file: '/resume/cv-mechanical.pdf',
+      label: 'Mechanical (ES, ATS)',
+      file: '/resume/Pablo_Garcia-Zarandieta_CV_Mechanical_ES_ATS.pdf',
     },
     {
-      label: 'DevOps / Platform',
-      file: '/resume/cv-devops.pdf',
+      label: 'Data Analytics (ES, ATS)',
+      file: '/resume/Pablo_Garcia-Zarandieta_CV_Data-Analytics_ES_ATS.pdf',
+    },
+    {
+      label: 'Platform / DevOps (ES, ATS)',
+      file: '/resume/Pablo_Garcia-Zarandieta_CV_Platform-DevOps_ES_ATS.pdf',
     },
   ];
 
@@ -46,7 +50,7 @@ export default function ResumePage() {
             <p className="text-sm text-[var(--sb-ink)]/70">
               Download the PDF that matches each role.
             </p>
-            <div className="grid gap-3 md:grid-cols-3">
+            <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
               {resumeDownloads.map((resume) => (
                 <article
                   key={resume.file}

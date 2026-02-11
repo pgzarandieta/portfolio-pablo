@@ -61,7 +61,7 @@ export default async function ProjectsPage({ searchParams }: ProjectsPageProps) 
           {filteredProjects.map((project) => (
             <article
               key={project.id}
-              className="flex h-full flex-col gap-4 rounded-2xl border border-[var(--sb-ink)]/10 bg-white/80 p-6"
+              className="flex h-full flex-col gap-4 rounded-2xl border border-[var(--sb-ink)]/10 bg-[var(--color-surface)] p-6"
             >
               <div className="stack">
                 <h2 className="text-xl">{project.title}</h2>

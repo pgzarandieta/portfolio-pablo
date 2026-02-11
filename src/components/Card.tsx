@@ -6,7 +6,7 @@ export type CardProps = {
 
 export default function Card({ title, description, tags }: CardProps) {
   return (
-    <div className="rounded-2xl border border-[var(--sb-sand)] bg-white/60 p-6 shadow-sm">
+    <div className="rounded-2xl border border-[var(--sb-sand)] bg-[var(--color-surface-soft)] p-6 shadow-sm">
       <div className="text-sm uppercase tracking-wide text-[var(--sb-ink)]">{title}</div>
       <p className="mt-3 text-base text-[var(--sb-ink)]/80">{description}</p>
       {tags && tags.length > 0 ? (

@@ -61,7 +61,7 @@ export default function Home() {
           {highlightProjects.map((project) => (
             <article
               key={project.id}
-              className="flex h-full flex-col gap-3 rounded-2xl border border-[var(--sb-ink)]/10 bg-white/80 p-5"
+              className="flex h-full flex-col gap-3 rounded-2xl border border-[var(--sb-ink)]/10 bg-[var(--color-surface)] p-5"
             >
               <div>
                 <h3 className="text-lg">{project.title}</h3>

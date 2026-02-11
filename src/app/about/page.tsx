@@ -50,7 +50,7 @@ export default function AboutPage() {
         <h2>Beyond the resume</h2>
         <div className="mt-6 grid gap-6 lg:grid-cols-[0.7fr_2.3fr]">
           <div className="rounded-3xl border border-[var(--sb-ink)]/10 bg-[var(--color-muted)] p-5">
-            <div className="flex aspect-[3/4] items-center justify-center rounded-2xl border border-dashed border-[var(--sb-ink)]/30 bg-white/70 text-xs uppercase tracking-[0.2em] text-[var(--sb-ink)]/60">
+            <div className="flex aspect-[3/4] items-center justify-center rounded-2xl border border-dashed border-[var(--sb-ink)]/30 bg-[var(--color-surface-strong)] text-xs uppercase tracking-[0.2em] text-[var(--sb-ink)]/60">
               Portrait photo placeholder
             </div>
             <p className="mt-4 text-xs text-[var(--sb-ink)]/60">
@@ -84,7 +84,7 @@ export default function AboutPage() {
               ].map((item) => (
                 <article
                   key={item.title}
-                  className="rounded-2xl border border-[var(--sb-ink)]/10 bg-white/80 p-4"
+                  className="rounded-2xl border border-[var(--sb-ink)]/10 bg-[var(--color-surface)] p-4"
                 >
                   <h3 className="text-sm">{item.title}</h3>
                   <p className="mt-2 text-xs text-[var(--sb-ink)]/70">{item.detail}</p>
@@ -127,7 +127,7 @@ export default function AboutPage() {
             .map((role) => (
               <article
                 key={role.id}
-                className="rounded-2xl border border-[var(--sb-ink)]/10 bg-white/80 p-6"
+                className="rounded-2xl border border-[var(--sb-ink)]/10 bg-[var(--color-surface)] p-6"
               >
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
                   <div>

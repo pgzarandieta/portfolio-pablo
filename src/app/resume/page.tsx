@@ -54,7 +54,7 @@ export default function ResumePage() {
               {resumeDownloads.map((resume) => (
                 <article
                   key={resume.file}
-                  className="rounded-2xl border border-[var(--sb-ink)]/10 bg-white/80 p-4"
+                  className="rounded-2xl border border-[var(--sb-ink)]/10 bg-[var(--color-surface)] p-4"
                 >
                   <div className="text-sm font-medium">{resume.label}</div>
                   <a
@@ -93,7 +93,7 @@ export default function ResumePage() {
           {content.experience.map((role) => (
             <article
               key={role.id}
-              className="rounded-2xl border border-[var(--sb-ink)]/10 bg-white/80 p-6"
+              className="rounded-2xl border border-[var(--sb-ink)]/10 bg-[var(--color-surface)] p-6"
             >
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <div>
@@ -144,7 +144,7 @@ export default function ResumePage() {
           {content.skills.map((group) => (
             <article
               key={group.category}
-              className="rounded-2xl border border-[var(--sb-ink)]/10 bg-white/80 p-5"
+              className="rounded-2xl border border-[var(--sb-ink)]/10 bg-[var(--color-surface)] p-5"
             >
               <h3 className="text-base">{group.category}</h3>
               <div className="mt-3 flex flex-wrap gap-2 text-xs uppercase tracking-[0.2em] text-[var(--sb-ink)]/60">

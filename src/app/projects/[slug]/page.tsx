@@ -48,7 +48,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
       </section>
       <section className="container section">
         <div className="grid gap-8 lg:grid-cols-[2fr_1fr]">
-          <article className="rounded-2xl border border-[var(--sb-ink)]/10 bg-white/80 p-6">
+          <article className="rounded-2xl border border-[var(--sb-ink)]/10 bg-[var(--color-surface)] p-6">
             <div className="prose max-w-none text-[var(--sb-ink)]/80">
               <ReactMarkdown
                 components={{
@@ -93,7 +93,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
               </div>
             )}
             {caseStudy.metrics && caseStudy.metrics.length > 0 && (
-              <div className="rounded-2xl border border-[var(--sb-ink)]/10 bg-white/80 p-5">
+              <div className="rounded-2xl border border-[var(--sb-ink)]/10 bg-[var(--color-surface)] p-5">
                 <h2 className="text-base">Impact</h2>
                 <ul className="mt-3 list-disc space-y-2 pl-4 text-sm text-[var(--sb-ink)]/70">
                   {caseStudy.metrics.map((item) => (

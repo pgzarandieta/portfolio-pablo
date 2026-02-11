@@ -1,31 +1,45 @@
 [
   {
     "id": "airbus-consultant",
-    "company": "Airbus (embedded consultant)",
+    "company": "Airbus (contractor via ALTEN)",
     "role": "Configuration Management / Change Process",
     "location": "Getafe, Madrid",
     "start": "2023-08",
     "end": "2025-09",
     "highlights": [
-      "Supported CM change process documentation and traceability",
-      "Defined customer-side requirements for a 3DEXPERIENCE-based platform",
-      "Executed UAT, training, and hypercare for rollout",
-      "Trained ~150 users across ~32 sessions",
-      "Worked with Jira/Confluence and PLM tooling"
+      "Translated change/equipment release processes into use cases and acceptance criteria",
+      "Executed end-to-end UAT including negative testing and reported defects/IRs",
+      "Contributed to Equipment Release hardening (states, gates, required attributes)",
+      "Supported rollout adoption and hypercare in Getafe",
+      "Trained ~175 users across ~32 sessions"
     ]
   },
   {
     "id": "airbus-data-intern",
     "company": "Airbus Commercial",
-    "role": "Data Intern",
-    "location": "Madrid",
+    "role": "Data Analytics Intern",
+    "location": "Getafe, Madrid",
     "start": "2023-02",
     "end": "2023-08",
     "highlights": [
-      "Built product structure dashboard for engineering queries",
-      "Implemented ETL pipelines in Skywise",
-      "Delivered a lightweight web app for data exploration",
-      "Supported BOM/structure analytics for decision making"
+      "Built a BOM trade-off data product (pipeline + dashboard) in Skywise",
+      "Reconstructed product structures and joined standard-part catalogs",
+      "Validated data quality against legacy exports and reported deltas",
+      "Delivered a pilot-ready dashboard for engineering teams"
+    ]
+  },
+  {
+    "id": "formula-student",
+    "company": "UPM Racing (Formula Student)",
+    "role": "Suspension & Dynamics / CAD Coordinator",
+    "location": "Madrid",
+    "start": "2020-09",
+    "end": "2023-12",
+    "highlights": [
+      "Led CAD governance and a change-style workflow in 3DEXPERIENCE",
+      "Redesigned the brake system after a critical failure, focusing on manufacturability",
+      "Supported track testing, setups, and competition operations",
+      "Created training and handoff documentation for new team members"
     ]
   }
 ]

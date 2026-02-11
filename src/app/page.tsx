@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 export default function Home() {
   const highlightProjects = content.projects.slice(0, 3);
+  const focusAreas = content.profiles.slice(0, 4);
 
   return (
     <Layout>
@@ -39,7 +40,7 @@ export default function Home() {
           <div className="rounded-3xl border border-[var(--sb-ink)]/10 bg-[var(--color-muted)] p-6">
             <h2 className="text-lg">Focus areas</h2>
             <div className="mt-4 grid gap-3 text-sm">
-              {content.profiles.slice(0, 3).map((profile) => (
+              {focusAreas.map((profile) => (
                 <div key={profile.id}>
                   <div className="font-medium">{profile.title}</div>
                   <div className="text-[var(--sb-ink)]/70">{profile.summary}</div>
